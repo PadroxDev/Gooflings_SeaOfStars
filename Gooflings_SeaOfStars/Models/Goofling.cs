@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gooflings
 {
-    public enum ExpRequirement
+    public enum GooflingType
     {
-        Erratic = 600000,
-        Fast = 800000,
-        Medium_Fast = 1000000,
-        Medium_Slow = 1059860,
-        Slow = 1250000,
-        Fluctuating = 1640000
+        Unknown,
+        Grayan,
+        Radany
     }
 
     public struct GooflingData
     {
+        public GooflingType GooflingType;
         public string Name;
+        public Type PrimaryType;
+        public Type SecondaryType;
         public int Level;
         public int Exp;
         public ExpRequirement ExpRequirement;
@@ -28,18 +26,38 @@ namespace Gooflings
         public int Mana;
         public int Attack;
         public int Defense;
-        public int SpAttack;
+        public int SpAtk;
         public int SpDef;
         public int Speed;
         // Moves
+
+        public GooflingData()
+        {
+            GooflingType = GooflingType.Unknown;
+            Name = "Unknown";
+            PrimaryType = Type.None;
+            SecondaryType = Type.None;
+            Level = 1;
+            Exp = 0;
+            ExpRequirement = ExpRequirement.Fast;
+            MaxHP = 100;
+            HP = MaxHP;
+            MaxMana = 100;
+            Mana = MaxMana;
+            Attack = 1;
+            Defense = 1;
+            SpAtk = 1;
+            SpDef = 1;
+            Speed = 1;
+        }
     }
 
     public class Goofling
     {
+        public GooflingType GooflingType { get; private set; }
         public string Name { get; private set; }
-
-        // Types
-
+        public Type PrimaryType { get; private set; }
+        public Type SecondaryType { get; private set; }
         public int Level { get; private set; }
         public int Exp { get; private set; }
         public ExpRequirement ExpRequirement { get; private set; }
@@ -53,6 +71,59 @@ namespace Gooflings
         public int SpDef { get; private set; }
         public int Speed { get; private set; }
 
-        // Moves
+        #region Events
+
+        public Action<float> OnExpEarned;
+        public Action<int> OnLevelUp;
+        
+        #endregion
+
+        public Goofling(GooflingData data)
+        {
+            GooflingType = data.GooflingType;
+            Name = data.Name;
+            PrimaryType = data.PrimaryType;
+            SecondaryType = data.SecondaryType;
+            Level = data.Level;
+            Exp = data.Exp;
+            ExpRequirement = data.ExpRequirement;
+            MaxHP = data.MaxHP;
+            HP = data.HP;
+            MaxMana = data.MaxMana;
+            Mana = data.Mana;
+            Attack = data.Attack;
+            Defense = data.Defense;
+            SpAtk = data.SpAtk;
+            SpDef = data.SpDef;
+            Speed = data.Speed;
+        }
+
+        private void AttemptLevelUp()
+        {
+            if (Level >= Helpers.MAX_LEVEL) return;
+
+            int expRequired = ExpRequirement.GetExpRequired(Level);
+            while (expRequired <= Exp)
+            {
+                Exp -= expRequired;
+                Level++;
+                OnLevelUp?.Invoke(Level);
+
+                Console.WriteLine($"{Name} is now level {Level} !");
+
+                expRequired = ExpRequirement.GetExpRequired(Level);
+                if (Level >= Helpers.MAX_LEVEL) break;
+            }
+        }
+
+        public void GainExperience(int amount)
+        {
+            if (Level >= Helpers.MAX_LEVEL) return;
+
+            Exp += amount;
+            AttemptLevelUp();
+
+            OnExpEarned?.Invoke(amount);
+        }
     }
 }
