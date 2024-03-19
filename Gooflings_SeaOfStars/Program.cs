@@ -9,9 +9,15 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("AHHH");
-
             InputManager input = new InputManager();
+
+            while (true)
+            {
+                bool pressed = Console.KeyAvailable;
+
+                input.SetKeyState(pressed);
+
+            }
 
         }
     }
