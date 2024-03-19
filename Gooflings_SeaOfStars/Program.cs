@@ -6,7 +6,7 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("AHHH");
+            Resources resources = new Resources();
         }
     }
 }
