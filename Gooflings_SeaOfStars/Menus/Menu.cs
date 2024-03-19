@@ -11,6 +11,8 @@ namespace Gooflings
         
         public void DrawMainMenu()
         {
+            Console.Clear();
+
             Console.WriteLine(" __________________________     _________________________ ");
             Console.WriteLine("|                          |   |                         |");
             Console.WriteLine("|        Gooflings         |   |           Sac           |");
@@ -24,6 +26,7 @@ namespace Gooflings
 
         public void DrawTeamMenu()
         {
+            Console.Clear();
             Console.WriteLine("__________________________");
             Console.WriteLine("\\                         \\");
             Console.WriteLine(" \\                         \\       ____________________________");
@@ -50,6 +53,7 @@ namespace Gooflings
 
         public void DrawBagMenu()
         {
+            Console.Clear();
             Console.WriteLine("                           __________________________________________");
             Console.WriteLine("                          |  __________________   _________________  |");
             Console.WriteLine("  ___________________     | |                  | |                 | |");

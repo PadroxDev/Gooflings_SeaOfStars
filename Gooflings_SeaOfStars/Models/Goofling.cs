@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Gooflings
@@ -75,6 +76,10 @@ namespace Gooflings
 
         public Action<float> OnExpEarned;
         public Action<int> OnLevelUp;
+
+        public Action<int> OnReceiveHealing;
+        public Action<int> OnTakeDamage;
+        public Action OnKnockOut;
         
         #endregion
 
@@ -97,6 +102,34 @@ namespace Gooflings
             SpDef = data.SpDef;
             Speed = data.Speed;
         }
+
+        #region HP
+
+        public void ReceiveHealing(int amount)
+        {
+            int previousHP = HP;
+            HP = Math.Clamp(HP + amount, 0, MaxHP);
+            OnReceiveHealing?.Invoke(HP - previousHP);
+        }
+
+        public void TakeDamage(int amount)
+        {
+            int previousHP = HP;
+            HP = Math.Clamp(HP - amount, 0, MaxHP);
+            OnTakeDamage?.Invoke(previousHP - HP);
+
+            if (HP <= 0) KnockOut();
+        }
+
+        public void KnockOut()
+        {
+            Console.WriteLine($"{Name} died !");
+            OnKnockOut?.Invoke();
+        }
+
+        #endregion
+
+        #region Experience
 
         private void AttemptLevelUp()
         {
@@ -125,5 +158,7 @@ namespace Gooflings
 
             OnExpEarned?.Invoke(amount);
         }
+
+        #endregion
     }
 }

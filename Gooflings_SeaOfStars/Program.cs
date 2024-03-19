@@ -12,6 +12,9 @@ namespace Gooflings
             menu.DrawMainMenu();
             menu.DrawTeamMenu();
             menu.DrawBagMenu();
+
+            GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
+            Goofling grayan = new(grayanData);
         }
     }
 }
