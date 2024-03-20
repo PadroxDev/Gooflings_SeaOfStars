@@ -11,6 +11,8 @@ namespace Gooflings
         
         public void DrawMainMenu()
         {
+            Console.Clear();
+
             Console.WriteLine(" __________________________     _________________________ ");
             Console.WriteLine("|                          |   |                         |");
             Console.WriteLine("|        Gooflings         |   |           Sac           |");
@@ -24,6 +26,8 @@ namespace Gooflings
 
         public void DrawTeamMenu()
         {
+            Console.Clear();
+
             Console.WriteLine("__________________________");
             Console.WriteLine("\\                         \\");
             Console.WriteLine(" \\                         \\       ____________________________");
@@ -46,10 +50,39 @@ namespace Gooflings
             Console.WriteLine("    \\___________________________\\    \\                             \\");
             Console.WriteLine("                                      \\                             \\");
             Console.WriteLine("                                       \\_____________________________\\");
+        } 
+        public void DrawTeamMenu(GooflingData gooflingData)
+        {
+            Console.Clear();
+
+            Console.WriteLine("__________________________");
+            Console.WriteLine("\\                         \\");
+            Console.WriteLine($" \\ {returnStringName(gooflingData,24)}\\       ____________________________");
+            Console.WriteLine($"  \\ {returnStringHp(gooflingData,24)}\\      \\                           \\");
+            Console.WriteLine($"   \\ {returnStringMana(gooflingData,24)}\\      \\                           \\");
+            Console.WriteLine("    \\_________________________\\      \\                           \\");
+            Console.WriteLine("                                      \\                           \\");
+            Console.WriteLine("__________________________             \\___________________________\\");
+            Console.WriteLine("\\                         \\   ");
+            Console.WriteLine(" \\                         \\       _____________________________");
+            Console.WriteLine("  \\                         \\      \\                            \\");
+            Console.WriteLine("   \\                         \\      \\                            \\");
+            Console.WriteLine("    \\_________________________\\      \\                            \\");
+            Console.WriteLine("                                      \\                            \\");
+            Console.WriteLine("____________________________           \\____________________________\\");
+            Console.WriteLine("\\                           \\");
+            Console.WriteLine(" \\                           \\     ______________________________");
+            Console.WriteLine("  \\                           \\    \\                             \\");
+            Console.WriteLine("   \\                           \\    \\                             \\");
+            Console.WriteLine("    \\___________________________\\    \\                             \\");
+            Console.WriteLine("                                      \\                             \\");
+            Console.WriteLine("                                       \\_____________________________\\");
         }
 
         public void DrawBagMenu()
         {
+            Console.Clear();
+
             Console.WriteLine("                           __________________________________________");
             Console.WriteLine("                          |  __________________   _________________  |");
             Console.WriteLine("  ___________________     | |                  | |                 | |");
@@ -66,6 +99,49 @@ namespace Gooflings
             Console.WriteLine(" \\___________________/    |                                          |");
             Console.WriteLine("                          |                                          |");
             Console.WriteLine("                          |__________________________________________|");
+        }
+
+        public string returnStringName(GooflingData gooflingData,int space)
+        {
+            string str = $"{gooflingData.Name} Niv.{gooflingData.Level}";
+            //int strLength = str.Length;
+            //int rest = strLength - space;
+            //for (int i = 0; i < rest; i++)
+            //{
+            //    string strBlank =+ " ";
+            //}
+            //if (strLength < space) {
+            //    str = str + " "*rest;
+            //}
+            return str;
+        }
+        public string returnStringHp(GooflingData gooflingData, int space)
+        {
+            string str = $"HP {gooflingData.HP}/{gooflingData.MaxHP}";
+            //int strLength = str.Length;
+            //int rest = strLength - space;
+            //for (int i = 0; i < rest; i++)
+            //{
+            //    string strBlank =+ " ";
+            //}
+            //if (strLength < space) {
+            //    str = str + " "*rest;
+            //}
+            return str;
+        }
+        public string returnStringMana(GooflingData gooflingData, int space)
+        {
+            string str = $"Mana {gooflingData.Mana}/{gooflingData.MaxMana}";
+            //int strLength = str.Length;
+            //int rest = strLength - space;
+            //for (int i = 0; i < rest; i++)
+            //{
+            //    string strBlank =+ " ";
+            //}
+            //if (strLength < space) {
+            //    str = str + " "*rest;
+            //}
+            return str;
         }
     }
 }
