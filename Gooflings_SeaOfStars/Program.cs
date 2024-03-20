@@ -10,10 +10,6 @@ namespace Gooflings
             Resources resources = new Resources();
             Menu menu = new Menu();
 
-            //menu.DrawMainMenu();
-            //menu.DrawTeamMenu();
-            //menu.DrawBagMenu();
-
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
             Goofling grayan = new(grayanData);
             GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);

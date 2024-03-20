@@ -20,7 +20,7 @@ namespace Gooflings.Moves
     {
         public MoveType MoveType { get; protected set; }
         public string Name { get; protected set; }
-        public Type Type { get; protected set; }
+        public Types AtkType { get; protected set; }
         public MoveCategory MoveCategory {get; protected set; }
         public int Power { get; protected set; }
         public int ManaCost { get; protected set; }
@@ -31,7 +31,7 @@ namespace Gooflings.Moves
         {
             MoveType = MoveType.Unknown;
             Name = "Unknown";
-            Type = Type.None;
+            AtkType = Types.None;
             MoveCategory = MoveCategory.Physical;
             Power = 0;
             ManaCost = 0;

@@ -9,8 +9,8 @@ namespace Gooflings.Moves
         public Croustifesses()
         {
             MoveType = MoveType.Croustifesses;
-            Name = "Croustifesses";
-            Type = Type.Food;
+            Name = "Test";
+            AtkType = Types.Food;
             Power = 50;
             ManaCost = 25;
         }

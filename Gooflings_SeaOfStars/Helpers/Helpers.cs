@@ -13,7 +13,7 @@ namespace Gooflings
         Fluctuating = 1640000
     }
 
-    public enum Type
+    public enum Types
     {
         None,
         Food,
@@ -69,7 +69,7 @@ namespace Gooflings
 
             float criticalHit = 1; // or 1.5f
             float random = 1f; // from 0.85 to 1
-            float STAB = attacker.PrimaryType == move.Type || attacker.SecondaryType == move.Type ? 1.5f : 1f;
+            float STAB = attacker.PrimaryType == move.AtkType || attacker.SecondaryType == move.AtkType ? 1.5f : 1f;
             float typeEffectiveness = 1f;
 
             float rawDamage = (((((2 * attacker.Level) / 5) + 2) * move.Power * (atk / def)) / 50)+2;

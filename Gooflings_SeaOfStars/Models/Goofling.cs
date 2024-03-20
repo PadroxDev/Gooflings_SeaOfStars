@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Gooflings.Moves;
 
 namespace Gooflings
 {
@@ -16,8 +17,8 @@ namespace Gooflings
     {
         public GooflingType GooflingType;
         public string Name;
-        public Type PrimaryType;
-        public Type SecondaryType;
+        public Types PrimaryType;
+        public Types SecondaryType;
         public int Level;
         public int Exp;
         public ExpRequirement ExpRequirement;
@@ -30,14 +31,14 @@ namespace Gooflings
         public int SpAtk;
         public int SpDef;
         public int Speed;
-        // Moves
+        public MoveType[] Moves;
 
         public GooflingData()
         {
             GooflingType = GooflingType.Unknown;
             Name = "Unknown";
-            PrimaryType = Type.None;
-            SecondaryType = Type.None;
+            PrimaryType = Types.None;
+            SecondaryType = Types.None;
             Level = 1;
             Exp = 0;
             ExpRequirement = ExpRequirement.Fast;
@@ -50,6 +51,13 @@ namespace Gooflings
             SpAtk = 1;
             SpDef = 1;
             Speed = 1;
+            Moves = new MoveType[4]
+            {
+                MoveType.Unknown,
+                MoveType.Unknown,
+                MoveType.Unknown,
+                MoveType.Unknown
+            };
         }
     }
 
@@ -57,8 +65,8 @@ namespace Gooflings
     {
         public GooflingType GooflingType { get; private set; }
         public string Name { get; private set; }
-        public Type PrimaryType { get; private set; }
-        public Type SecondaryType { get; private set; }
+        public Types PrimaryType { get; private set; }
+        public Types SecondaryType { get; private set; }
         public int Level { get; private set; }
         public int Exp { get; private set; }
         public ExpRequirement ExpRequirement { get; private set; }
@@ -79,7 +87,7 @@ namespace Gooflings
 
         public Action<int> OnReceiveHealing;
         public Action<int> OnTakeDamage;
-        public Action OnKnockOut;
+        public Action OnFaint;
         
         #endregion
 
@@ -126,7 +134,7 @@ namespace Gooflings
         public void Faint()
         {
             Console.WriteLine($"{Name} fainted !");
-            OnKnockOut?.Invoke();
+            OnFaint?.Invoke();
         }
 
         #endregion

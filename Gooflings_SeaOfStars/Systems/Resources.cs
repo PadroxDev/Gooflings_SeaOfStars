@@ -15,7 +15,7 @@ namespace Gooflings
             {
                 GooflingType = GooflingType.Grayan,
                 Name = "Grayan",
-                PrimaryType = Type.Food,
+                PrimaryType = Types.Food,
                 ExpRequirement = ExpRequirement.Fluctuating,
                 MaxHP = 1000,
                 HP = 1000,
@@ -25,15 +25,22 @@ namespace Gooflings
                 Defense = 30,
                 SpAtk = 2,
                 SpDef = 40,
-                Speed = 2
+                Speed = 2,
+                Moves = new MoveType[4]
+                {
+                    MoveType.Croustifesses,
+                    MoveType.Unknown,
+                    MoveType.Unknown,
+                    MoveType.Unknown
+                }
             },
 
             new GooflingData()
             {
                 GooflingType = GooflingType.Radany,
                 Name = "Radany",
-                PrimaryType = Type.Caillou,
-                SecondaryType = Type.Food,
+                PrimaryType = Types.Caillou,
+                SecondaryType = Types.Food,
                 ExpRequirement = ExpRequirement.Slow,
                 MaxHP = 1200,
                 HP = 1200,
@@ -43,7 +50,14 @@ namespace Gooflings
                 Defense = 40,
                 SpAtk = 1,
                 SpDef = 10,
-                Speed = 1
+                Speed = 1,
+                Moves = new MoveType[4]
+                {
+                    MoveType.Croustifesses,
+                    MoveType.Unknown,
+                    MoveType.Unknown,
+                    MoveType.Unknown
+                }
             }
         };
         private Dictionary<GooflingType, GooflingData> _GooflingsDataDict;
@@ -68,7 +82,6 @@ namespace Gooflings
         {
             // Read from parser ?
             _GooflingsDataDict = GooflingsData.ToDictionary(g => g.GooflingType, g => g);
-
             _MovesDataDict = MovesData.ToDictionary(m => m.MoveType, m => m);
         }
 
