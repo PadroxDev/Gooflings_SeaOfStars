@@ -19,19 +19,19 @@ namespace Gooflings
             string key = input.SetKeyState(pressed);
             if (key != "no")
             {
-                switch(key)
+                switch (key)
                 {
                     case "Z":
                         GoUp(player);
                         break;
-                    case "S": 
+                    case "S":
                         GoDown(player);
                         break;
-                    case "Q": 
-                        GoLeft(player); 
+                    case "Q":
+                        GoLeft(player);
                         break;
-                    case "D": 
-                        GoRight(player); 
+                    case "D":
+                        GoRight(player);
                         break;
                 }
             }
@@ -40,22 +40,38 @@ namespace Gooflings
 
         private void GoUp(Player player)
         {
-            player.posY--;
+            if (player.posY > 0)
+            {
+                player.posY--;
+            }
+            
         }
 
         private void GoDown(Player player)
         {
-            player.posY++;
+            if(player.posY < 10)
+            {
+                player.posY++;
+            }
+            
         }
 
         private void GoLeft(Player player)
         {
-            player.posX--;
+            if (player.posX > 0)
+            {
+                player.posX--;
+            }
+            
         }
 
         private void GoRight(Player player)
         {
-            player.posX++;
+            if (player.posX < 10)
+            {
+                player.posX++;
+            }
+            
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using Gooflings.Moves;
 
 
+
 namespace Gooflings
 {
 
@@ -11,6 +12,9 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
+
+            Console.Title = "Gooflings";
+          
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
             InputManager input = new InputManager();
@@ -42,8 +46,10 @@ namespace Gooflings
 
             //}
 
+
             Resources resources = new Resources();
             Menu menu = new Menu();
+          
 
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
             grayanData.Level = 50;

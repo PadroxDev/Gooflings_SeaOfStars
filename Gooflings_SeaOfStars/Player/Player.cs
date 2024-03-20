@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Gooflings
 {
-    public class Player 
+    public class Player
     {
         public float posX;
         public float posY;
 
-        public Player() 
+        public Player()
         {
             posX = 0;
-            posY = 0;   
+            posY = 0;
         }
 
     }
