@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Gooflings.Moves;
+﻿using Gooflings.Moves;
 
 namespace Gooflings
 {
@@ -29,6 +28,8 @@ namespace Gooflings
         public const double EXP_EXPONENTIAL_OFFSET = 20;
 
         public const int DEFAULT_IV = 31;
+
+        public static Random Rand = new();
 
         private static Dictionary<ExpRequirement, int> _totalExpCoefficient = new();
         private static void EvaluateTotalExp(this ExpRequirement expRequirement)
@@ -61,22 +62,30 @@ namespace Gooflings
             return (int)Math.Round(exp);
         }
 
-        // Need move
         public static int CalculateDamageToDeal(Goofling attacker, Goofling target, Move move)
         {
             float atk = move.MoveCategory == MoveCategory.Physical ? attacker.Attack : attacker.SpAtk;
             float def = move.MoveCategory == MoveCategory.Physical ? target.Defense : target.SpDef;
 
-            float criticalHit = 1; // or 1.5f
-            float random = 1f; // from 0.85 to 1
+            float criticalHit = RollCriticalHit(attacker) ? 1.5f : 1f;
+            float random = Rand.Next(85, 101) * 0.01f;
             float STAB = attacker.PrimaryType == move.AtkType || attacker.SecondaryType == move.AtkType ? 1.5f : 1f;
-            float typeEffectiveness = 1f;
+            float typeEffectiveness = 2f;
 
-            float rawDamage = (((((2 * attacker.Level) / 5) + 2) * move.Power * (atk / def)) / 50)+2;
+            double rawDamage = (((((2f * attacker.Level) / 5f) + 2f) * move.Power * (atk / def)) / 50f)+2f;
 
-            float damage = rawDamage * criticalHit * random * STAB * typeEffectiveness;
+            double damage = rawDamage * criticalHit * random * STAB * typeEffectiveness;
 
             return (int)Math.Floor(damage);
+        }
+
+        public static bool RollCriticalHit(Goofling goofling)
+        {
+            int baseSpeed = Resources.Instance.GetGooflingData(goofling.GooflingType).Speed;
+            float threshold = baseSpeed / 2f;
+            int randomByte = Rand.Next(256);
+            Console.WriteLine($"{randomByte} < {threshold}");
+            return randomByte < threshold;
         }
     }
 }
