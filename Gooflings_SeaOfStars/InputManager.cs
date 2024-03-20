@@ -9,10 +9,11 @@ namespace Gooflings
     public class InputManager
     {
 
-        private Dictionary<string, bool> keyList = new Dictionary<string, bool>();
+        private Dictionary<string, bool> keyList;
         public InputManager()
         {
-           
+            keyList = new Dictionary<string, bool>();
+
             keyList.Add("Escape", false);
             keyList.Add("Enter", false);
 
@@ -28,27 +29,29 @@ namespace Gooflings
 
         }
 
-
-        public void SetKeyState(bool pressed)
+        public string SetKeyState(bool pressed)
         {
             if (pressed)
             {
-                ConsoleKeyInfo consoleKeyInfo = Console.ReadKey();
+                ConsoleKeyInfo consoleKeyInfo = Console.ReadKey(true);
 
                 switch (keyList[consoleKeyInfo.Key.ToString()])
                 {
-                    case false:
+                    case false: // down -> true
                         keyList[consoleKeyInfo.Key.ToString()] = true;
-                        Console.WriteLine("false to true");
-                        break;
-                    case true:
+                        return consoleKeyInfo.Key.ToString();
+                    case true: // hold -> true
                         keyList[consoleKeyInfo.Key.ToString()] = true;
-                        Console.WriteLine("true to true");
-                        break;
+                        return consoleKeyInfo.Key.ToString();
                 }
-            }else
+            }else // up -> reset
             {
-                //keyList = keyList.ToDictionary(p => p.Key, p => false);
+                // comment faire pour que ce s'active que quand la touche est lacher 
+
+                keyList = keyList.ToDictionary(p => p.Key, p => false);
+
+                return "no";
+
             }
             
         }
