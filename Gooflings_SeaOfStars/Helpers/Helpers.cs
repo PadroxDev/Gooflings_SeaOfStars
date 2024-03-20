@@ -1,12 +1,36 @@
-﻿namespace Gooflings
+﻿using System.Numerics;
+using Gooflings.Moves;
+
+namespace Gooflings
 {
+    public enum ExpRequirement
+    {
+        Erratic = 600000,
+        Fast = 800000,
+        Medium_Fast = 1000000,
+        Medium_Slow = 1059860,
+        Slow = 1250000,
+        Fluctuating = 1640000
+    }
+
+    public enum Types
+    {
+        None,
+        Food,
+        Caillou,
+        Code,
+        Yordle
+    }
+
     public static class Helpers
     {
         public const int MAX_LEVEL = 100;
         public const double EXP_EXPONENTIAL_TRIM = 0.7;
         public const double EXP_EXPONENTIAL_OFFSET = 20;
-        private static Dictionary<ExpRequirement, int> _totalExpCoefficient = new();
 
+        public const int DEFAULT_IV = 31;
+
+        private static Dictionary<ExpRequirement, int> _totalExpCoefficient = new();
         private static void EvaluateTotalExp(this ExpRequirement expRequirement)
         {
             double total = 0;
@@ -31,8 +55,28 @@
 
         public static int GetExpRequired(this ExpRequirement expRequirement, int currentLevel)
         {
+            int totalExp = expRequirement.GetTotalExp();
 
-            return 1;
+            double exp = ((currentLevel * (currentLevel * EXP_EXPONENTIAL_TRIM) + EXP_EXPONENTIAL_OFFSET) / totalExp) * (int)expRequirement;
+            return (int)Math.Round(exp);
+        }
+
+        // Need move
+        public static int CalculateDamageToDeal(Goofling attacker, Goofling target, Move move)
+        {
+            float atk = move.MoveCategory == MoveCategory.Physical ? attacker.Attack : attacker.SpAtk;
+            float def = move.MoveCategory == MoveCategory.Physical ? target.Defense : target.SpDef;
+
+            float criticalHit = 1; // or 1.5f
+            float random = 1f; // from 0.85 to 1
+            float STAB = attacker.PrimaryType == move.AtkType || attacker.SecondaryType == move.AtkType ? 1.5f : 1f;
+            float typeEffectiveness = 1f;
+
+            float rawDamage = (((((2 * attacker.Level) / 5) + 2) * move.Power * (atk / def)) / 50)+2;
+
+            float damage = rawDamage * criticalHit * random * STAB * typeEffectiveness;
+
+            return (int)Math.Floor(damage);
         }
     }
 }
