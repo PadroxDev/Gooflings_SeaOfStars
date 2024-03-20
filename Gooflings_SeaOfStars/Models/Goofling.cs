@@ -118,12 +118,14 @@ namespace Gooflings
             HP = Math.Clamp(HP - amount, 0, MaxHP);
             OnTakeDamage?.Invoke(previousHP - HP);
 
-            if (HP <= 0) KnockOut();
+            Console.WriteLine($"{Name} has {HP} / {MaxHP} now !");
+
+            if (HP <= 0) Faint();
         }
 
-        public void KnockOut()
+        public void Faint()
         {
-            Console.WriteLine($"{Name} died !");
+            Console.WriteLine($"{Name} fainted !");
             OnKnockOut?.Invoke();
         }
 

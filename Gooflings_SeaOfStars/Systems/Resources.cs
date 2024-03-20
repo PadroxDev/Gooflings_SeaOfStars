@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Gooflings.Moves;
 
 namespace Gooflings
 {
@@ -8,7 +9,7 @@ namespace Gooflings
     {
         public static Resources Instance { get; private set; }
 
-        public List<GooflingData> GooflingsData { get; private set; } = new List<GooflingData>()
+        public List<GooflingData> GooflingsData { get; private set; } = new()
         {
             new GooflingData()
             {
@@ -17,8 +18,10 @@ namespace Gooflings
                 PrimaryType = Type.Food,
                 ExpRequirement = ExpRequirement.Fluctuating,
                 MaxHP = 1000,
+                HP = 1000,
                 MaxMana = 1000,
-                Attack = 15,
+                Mana = 1000,
+                Attack = 40,
                 Defense = 30,
                 SpAtk = 2,
                 SpDef = 40,
@@ -33,15 +36,23 @@ namespace Gooflings
                 SecondaryType = Type.Food,
                 ExpRequirement = ExpRequirement.Slow,
                 MaxHP = 1200,
+                HP = 1200,
+                MaxMana = 700,
+                Mana = 700,
                 Attack = 5,
-                Defense = 60,
+                Defense = 40,
                 SpAtk = 1,
                 SpDef = 10,
                 Speed = 1
             }
         };
-
         private Dictionary<GooflingType, GooflingData> _GooflingsDataDict;
+
+        public List<Move> MovesData { get; private set; } = new()
+        {
+            new Croustifesses(),
+        };
+        private Dictionary<MoveType, Move> _MovesDataDict;
 
         public Resources() {
             if (Instance is not null) return;
@@ -57,8 +68,11 @@ namespace Gooflings
         {
             // Read from parser ?
             _GooflingsDataDict = GooflingsData.ToDictionary(g => g.GooflingType, g => g);
+
+            _MovesDataDict = MovesData.ToDictionary(m => m.MoveType, m => m);
         }
 
         public GooflingData GetGooflingData(GooflingType type) => _GooflingsDataDict[type];
+        public Move GetMove(MoveType type) => _MovesDataDict[type];
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace Gooflings
+﻿using System.Numerics;
+using Gooflings.Moves;
+
+namespace Gooflings
 {
     public enum ExpRequirement
     {
@@ -24,6 +27,8 @@
         public const int MAX_LEVEL = 100;
         public const double EXP_EXPONENTIAL_TRIM = 0.7;
         public const double EXP_EXPONENTIAL_OFFSET = 20;
+
+        public const int DEFAULT_IV = 31;
 
         private static Dictionary<ExpRequirement, int> _totalExpCoefficient = new();
         private static void EvaluateTotalExp(this ExpRequirement expRequirement)
@@ -54,6 +59,24 @@
 
             double exp = ((currentLevel * (currentLevel * EXP_EXPONENTIAL_TRIM) + EXP_EXPONENTIAL_OFFSET) / totalExp) * (int)expRequirement;
             return (int)Math.Round(exp);
+        }
+
+        // Need move
+        public static int CalculateDamageToDeal(Goofling attacker, Goofling target, Move move)
+        {
+            float atk = move.MoveCategory == MoveCategory.Physical ? attacker.Attack : attacker.SpAtk;
+            float def = move.MoveCategory == MoveCategory.Physical ? target.Defense : target.SpDef;
+
+            float criticalHit = 1; // or 1.5f
+            float random = 1f; // from 0.85 to 1
+            float STAB = attacker.PrimaryType == move.Type || attacker.SecondaryType == move.Type ? 1.5f : 1f;
+            float typeEffectiveness = 1f;
+
+            float rawDamage = (((((2 * attacker.Level) / 5) + 2) * move.Power * (atk / def)) / 50)+2;
+
+            float damage = rawDamage * criticalHit * random * STAB * typeEffectiveness;
+
+            return (int)Math.Floor(damage);
         }
     }
 }
