@@ -24,33 +24,6 @@ namespace Gooflings
 
         }
 
-        public void DrawTeamMenu()
-        {
-            Console.Clear();
-
-            Console.WriteLine("__________________________");
-            Console.WriteLine("\\                         \\");
-            Console.WriteLine(" \\                         \\       ____________________________");
-            Console.WriteLine("  \\                         \\      \\                           \\");
-            Console.WriteLine("   \\                         \\      \\                           \\");
-            Console.WriteLine("    \\_________________________\\      \\                           \\");
-            Console.WriteLine("                                      \\                           \\");
-            Console.WriteLine("__________________________             \\___________________________\\");
-            Console.WriteLine("\\                         \\   ");
-            Console.WriteLine(" \\                         \\       _____________________________");
-            Console.WriteLine("  \\                         \\      \\                            \\");
-            Console.WriteLine("   \\                         \\      \\                            \\");
-            Console.WriteLine("    \\_________________________\\      \\                            \\");
-            Console.WriteLine("                                      \\                            \\");
-            Console.WriteLine("____________________________           \\____________________________\\");
-            Console.WriteLine("\\                           \\");
-            Console.WriteLine(" \\                           \\     ______________________________");
-            Console.WriteLine("  \\                           \\    \\                             \\");
-            Console.WriteLine("   \\                           \\    \\                             \\");
-            Console.WriteLine("    \\___________________________\\    \\                             \\");
-            Console.WriteLine("                                      \\                             \\");
-            Console.WriteLine("                                       \\_____________________________\\");
-        } 
         public void DrawTeamMenu(GooflingData gooflingData)
         {
             Console.Clear();
@@ -104,43 +77,30 @@ namespace Gooflings
         public string returnStringName(GooflingData gooflingData,int space)
         {
             string str = $"{gooflingData.Name} Niv.{gooflingData.Level}";
-            //int strLength = str.Length;
-            //int rest = strLength - space;
-            //for (int i = 0; i < rest; i++)
-            //{
-            //    string strBlank =+ " ";
-            //}
-            //if (strLength < space) {
-            //    str = str + " "*rest;
-            //}
+            int rest = space - str.Length;
+            if (rest > 0)
+            {
+                return str + new string(' ', rest);
+            }
             return str;
         }
         public string returnStringHp(GooflingData gooflingData, int space)
         {
             string str = $"HP {gooflingData.HP}/{gooflingData.MaxHP}";
-            //int strLength = str.Length;
-            //int rest = strLength - space;
-            //for (int i = 0; i < rest; i++)
-            //{
-            //    string strBlank =+ " ";
-            //}
-            //if (strLength < space) {
-            //    str = str + " "*rest;
-            //}
+            int rest = space - str.Length;
+            if (rest > 0)
+            {
+                return str + new string(' ', rest);
+            }
             return str;
         }
         public string returnStringMana(GooflingData gooflingData, int space)
         {
-            string str = $"Mana {gooflingData.Mana}/{gooflingData.MaxMana}";
-            //int strLength = str.Length;
-            //int rest = strLength - space;
-            //for (int i = 0; i < rest; i++)
-            //{
-            //    string strBlank =+ " ";
-            //}
-            //if (strLength < space) {
-            //    str = str + " "*rest;
-            //}
+            string str = $"PM {gooflingData.Mana}/{gooflingData.MaxMana}";
+            int rest = space - str.Length;
+            if (rest > 0) {
+               return str + new string(' ', rest);
+            }
             return str;
         }
     }
