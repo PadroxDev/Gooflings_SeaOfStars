@@ -30,11 +30,11 @@ namespace Gooflings
 
             Console.WriteLine("__________________________");
             Console.WriteLine("\\                         \\");
-            Console.WriteLine($" \\ {returnStringName(Resources.Instance.GetGooflingData(party[0].GooflingType),24)}\\       __________________________");
-            Console.WriteLine($"  \\ {returnStringHp(Resources.Instance.GetGooflingData(party[0].GooflingType), 24)}\\      \\                         \\");
-            Console.WriteLine($"   \\ {returnStringMana(Resources.Instance.GetGooflingData(party[0].GooflingType), 24)}\\      \\ {returnStringName(Resources.Instance.GetGooflingData(party[1].GooflingType), 24)}\\");
-            Console.WriteLine($"    \\_________________________\\      \\ {returnStringHp(Resources.Instance.GetGooflingData(party[1].GooflingType), 24)}\\");
-            Console.WriteLine($"                                      \\ {returnStringMana(Resources.Instance.GetGooflingData(party[1].GooflingType), 24)}\\");
+            Console.WriteLine($" \\ {returnStringName(party[0],24)}\\       __________________________");
+            Console.WriteLine($"  \\ {returnStringHp(party[0], 24)}\\      \\                         \\");
+            Console.WriteLine($"   \\ {returnStringMana(party[0], 24)}\\      \\ {returnStringName(party[1], 24)}\\");
+            Console.WriteLine($"    \\_________________________\\      \\ {returnStringHp(party[1], 24)}\\");
+            Console.WriteLine($"                                      \\ {returnStringMana(party[1], 24)}\\");
             Console.WriteLine("__________________________             \\_________________________\\");
             Console.WriteLine("\\                         \\   ");
             Console.WriteLine(" \\                         \\       __________________________");
@@ -74,9 +74,9 @@ namespace Gooflings
             Console.WriteLine("                          |__________________________________________|");
         }
 
-        public string returnStringName(GooflingData gooflingData,int space)
+        public string returnStringName(Goofling goofling,int space)
         {
-            string str = $"{gooflingData.Name} Niv.{gooflingData.Level}";
+            string str = $"{goofling.Name} Niv.{goofling.Level}";
             int rest = space - str.Length;
             if (rest > 0)
             {
@@ -84,9 +84,9 @@ namespace Gooflings
             }
             return str;
         }
-        public string returnStringHp(GooflingData gooflingData, int space)
+        public string returnStringHp(Goofling goofling, int space)
         {
-            string str = $"HP {gooflingData.HP}/{gooflingData.MaxHP}";
+            string str = $"HP {goofling.HP}/{goofling.MaxHP}";
             int rest = space - str.Length;
             if (rest > 0)
             {
@@ -94,9 +94,9 @@ namespace Gooflings
             }
             return str;
         }
-        public string returnStringMana(GooflingData gooflingData, int space)
+        public string returnStringMana(Goofling goofling, int space)
         {
-            string str = $"PM {gooflingData.Mana}/{gooflingData.MaxMana}";
+            string str = $"PM {goofling.Mana}/{goofling.MaxMana}";
             int rest = space - str.Length;
             if (rest > 0) {
                return str + new string(' ', rest);
