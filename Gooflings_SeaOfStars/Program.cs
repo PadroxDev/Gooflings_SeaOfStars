@@ -12,9 +12,14 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
+            Console.SetWindowSize(180, 50);
+            Console.SetBufferSize(180, 50);
+
+            // width = 180
+            // heigh = 50
 
             Console.Title = "Gooflings";
-          
+
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
             InputManager input = new InputManager();
@@ -24,9 +29,9 @@ namespace Gooflings
                 bool pressed = Console.KeyAvailable;
                 movement.DoesMove(pressed, player, input);
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < Console.WindowHeight; i++)
                 {
-                    for (int j = 0;j < 10; j++)
+                    for (int j = 0;j < Console.WindowWidth; j++)
                     {
                         if (i == player.posY && j == player.posX)
                         {
