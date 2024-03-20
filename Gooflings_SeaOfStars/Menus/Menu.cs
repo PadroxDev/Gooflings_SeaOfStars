@@ -24,32 +24,32 @@ namespace Gooflings
 
         }
 
-        public void DrawTeamMenu(GooflingData gooflingData)
+        public void DrawTeamMenu(List<Goofling> party)
         {
             Console.Clear();
 
             Console.WriteLine("__________________________");
             Console.WriteLine("\\                         \\");
-            Console.WriteLine($" \\ {returnStringName(gooflingData,24)}\\       ____________________________");
-            Console.WriteLine($"  \\ {returnStringHp(gooflingData,24)}\\      \\                           \\");
-            Console.WriteLine($"   \\ {returnStringMana(gooflingData,24)}\\      \\                           \\");
-            Console.WriteLine("    \\_________________________\\      \\                           \\");
-            Console.WriteLine("                                      \\                           \\");
-            Console.WriteLine("__________________________             \\___________________________\\");
+            Console.WriteLine($" \\ {returnStringName(Resources.Instance.GetGooflingData(party[0].GooflingType),24)}\\       __________________________");
+            Console.WriteLine($"  \\ {returnStringHp(Resources.Instance.GetGooflingData(party[0].GooflingType), 24)}\\      \\                         \\");
+            Console.WriteLine($"   \\ {returnStringMana(Resources.Instance.GetGooflingData(party[0].GooflingType), 24)}\\      \\ {returnStringName(Resources.Instance.GetGooflingData(party[1].GooflingType), 24)}\\");
+            Console.WriteLine($"    \\_________________________\\      \\ {returnStringHp(Resources.Instance.GetGooflingData(party[1].GooflingType), 24)}\\");
+            Console.WriteLine($"                                      \\ {returnStringMana(Resources.Instance.GetGooflingData(party[1].GooflingType), 24)}\\");
+            Console.WriteLine("__________________________             \\_________________________\\");
             Console.WriteLine("\\                         \\   ");
-            Console.WriteLine(" \\                         \\       _____________________________");
-            Console.WriteLine("  \\                         \\      \\                            \\");
-            Console.WriteLine("   \\                         \\      \\                            \\");
-            Console.WriteLine("    \\_________________________\\      \\                            \\");
-            Console.WriteLine("                                      \\                            \\");
-            Console.WriteLine("____________________________           \\____________________________\\");
+            Console.WriteLine(" \\                         \\       __________________________");
+            Console.WriteLine("  \\                         \\      \\                         \\");
+            Console.WriteLine("   \\                         \\      \\                         \\");
+            Console.WriteLine("    \\_________________________\\      \\                         \\");
+            Console.WriteLine("                                      \\                         \\");
+            Console.WriteLine("____________________________           \\_________________________\\");
             Console.WriteLine("\\                           \\");
-            Console.WriteLine(" \\                           \\     ______________________________");
-            Console.WriteLine("  \\                           \\    \\                             \\");
-            Console.WriteLine("   \\                           \\    \\                             \\");
-            Console.WriteLine("    \\___________________________\\    \\                             \\");
-            Console.WriteLine("                                      \\                             \\");
-            Console.WriteLine("                                       \\_____________________________\\");
+            Console.WriteLine(" \\                           \\     ____________________________");
+            Console.WriteLine("  \\                           \\    \\                           \\");
+            Console.WriteLine("   \\                           \\    \\                           \\");
+            Console.WriteLine("    \\___________________________\\    \\                           \\");
+            Console.WriteLine("                                      \\                           \\");
+            Console.WriteLine("                                       \\___________________________\\");
         }
 
         public void DrawBagMenu()
