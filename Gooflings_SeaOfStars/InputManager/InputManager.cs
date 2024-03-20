@@ -44,7 +44,8 @@ namespace Gooflings
                         keyList[consoleKeyInfo.Key.ToString()] = true;
                         return consoleKeyInfo.Key.ToString();
                 }
-            }else // up -> reset
+            }
+            else // up -> reset
             {
                 // comment faire pour que ce s'active que quand la touche est lacher 
 
@@ -53,9 +54,9 @@ namespace Gooflings
                 return "no";
 
             }
-            
+
         }
-        
+
     }
 
 }
