@@ -18,6 +18,28 @@ namespace Gooflings
            Members = new(PARTY_SIZE);
         }
 
+        public Party(GooflingData[] members)
+        {
+            Members = new(PARTY_SIZE);
+            foreach (GooflingData member in members)
+            {
+                Goofling goofling = new(member);
+                Members.Add(goofling);
+            }
+        }
+
+        public Party(TrainerGoofling[] members)
+        {
+            Members = new(PARTY_SIZE);
+            foreach(TrainerGoofling member in members)
+            {
+                GooflingData data = Resources.Instance.GetGooflingData(member.GooflingType);
+                data.Level = member.Level;
+                Goofling goofling = new(data);
+                Members.Add(goofling);
+            }
+        }
+
         ~Party()
         {
         }

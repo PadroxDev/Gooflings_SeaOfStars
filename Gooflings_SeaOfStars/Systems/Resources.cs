@@ -64,6 +64,29 @@ namespace Gooflings
         };
         private Dictionary<MoveType, Move> _MovesDataDict;
 
+        public List<TrainerData> TrainersData { get; private set; } = new()
+        {
+            new TrainerData()
+            {
+                TrainerType = TrainerType.Alice,
+                Name = "Alice",
+                Party = new TrainerGoofling[2]
+                {
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Grayan,
+                        Level = 12
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Radany,
+                        Level = 14
+                    }
+                }
+            }
+        };
+        private Dictionary<TrainerType, TrainerData> _TrainersDataDict;
+
         public Resources() {
             if (Instance is not null) return;
             Instance = this;
@@ -79,9 +102,11 @@ namespace Gooflings
             // Read from parser ?
             _GooflingsDataDict = GooflingsData.ToDictionary(g => g.GooflingType, g => g);
             _MovesDataDict = MovesData.ToDictionary(m => m.MoveType, m => m);
+            _TrainersDataDict = TrainersData.ToDictionary(t => t.TrainerType, t => t);
         }
 
         public GooflingData GetGooflingData(GooflingType type) => _GooflingsDataDict[type];
         public Move GetMove(MoveType type) => _MovesDataDict[type];
+        public TrainerData GetTrainerData(TrainerType type) => _TrainersDataDict[type];
     }
 }

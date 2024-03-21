@@ -21,6 +21,18 @@ namespace Gooflings
         Yordle
     }
 
+    public struct TrainerGoofling
+    {
+        public GooflingType GooflingType;
+        public int Level;
+
+        public TrainerGoofling()
+        {
+            GooflingType = GooflingType.Unknown;
+            Level = 1;
+        }
+    }
+
     public static class Helpers
     {
         public const int MAX_LEVEL = 100;
