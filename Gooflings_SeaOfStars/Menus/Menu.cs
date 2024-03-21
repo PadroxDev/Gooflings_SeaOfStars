@@ -21,7 +21,6 @@ namespace Gooflings
             Console.WriteLine("|                          |   |                         |");
             Console.WriteLine("|        Sauvegarde        |   |         Quitter         |");
             Console.WriteLine("|__________________________|   |_________________________|");
-
         }
 
         public void DrawTeamMenu(GooflingData gooflingData)

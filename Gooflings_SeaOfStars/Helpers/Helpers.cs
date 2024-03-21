@@ -84,7 +84,6 @@ namespace Gooflings
             int baseSpeed = Resources.Instance.GetGooflingData(goofling.GooflingType).Speed;
             float threshold = baseSpeed / 2f;
             int randomByte = Rand.Next(256);
-            Console.WriteLine($"{randomByte} < {threshold}");
             return randomByte < threshold;
         }
     }

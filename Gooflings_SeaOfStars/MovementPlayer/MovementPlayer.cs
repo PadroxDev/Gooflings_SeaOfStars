@@ -35,7 +35,6 @@ namespace Gooflings
                         break;
                 }
             }
-
         }
 
         private void GoUp(Player player)
