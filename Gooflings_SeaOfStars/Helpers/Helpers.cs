@@ -62,6 +62,19 @@ namespace Gooflings
             return (int)Math.Round(exp);
         }
 
+        public static int CalculateStatByLevel(int baseStat, int level) 
+        {
+            double updatedStat = ((((2f * baseStat + 31f) * level) / 100f) + 5);
+            return (int)Math.Floor(updatedStat);
+        }
+
+        public static int CalculateHpByLevel(int baseStat, int level)
+        {
+            double updatedStat = ((((2f * baseStat + 31f) * level) / 100f) + level + 10);
+            return (int)Math.Floor(updatedStat);
+        }
+
+
         public static int CalculateDamageToDeal(Goofling attacker, Goofling target, Move move)
         {
             float atk = move.MoveCategory == MoveCategory.Physical ? attacker.Attack : attacker.SpAtk;
