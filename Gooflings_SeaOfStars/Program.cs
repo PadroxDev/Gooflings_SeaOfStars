@@ -11,6 +11,7 @@ namespace Gooflings
         {
 
             Console.Title = "Gooflings";
+            Console.SetWindowSize(180,50);
           
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
@@ -47,14 +48,21 @@ namespace Gooflings
             Resources resources = new Resources();
             Menu menu = new Menu();
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
-            grayanData.Level = 50;
+            grayanData.Level = 20;
             Goofling grayan = new(grayanData);
             GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
-            danyData.Level = 50;
+            danyData.Level = 32;
             Goofling dany = new(danyData);
+
+
+
 
             player.Party.Members.Add(grayan);
             player.Party.Members.Add(dany);
+            player.Party.Members.Add(grayan);
+            player.Party.Members.Add(dany);
+            player.Party.Members.Add(dany);
+            player.Party.Members.Add(grayan);
 
             menu.DrawTeamMenu(player.Party.Members);
 

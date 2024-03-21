@@ -100,15 +100,21 @@ namespace Gooflings
             Level = data.Level;
             Exp = data.Exp;
             ExpRequirement = data.ExpRequirement;
-            MaxHP = data.HP;
-            HP = (int)Math.Round(data.HP * data.CurrentHP);
-            MaxMana = data.Mana;
-            Mana = (int)Math.Round(data.Mana * data.CurrentMana);
-            Attack = data.Attack;
-            Defense = data.Defense;
-            SpAtk = data.SpAtk;
-            SpDef = data.SpDef;
-            Speed = data.Speed;
+            MaxHP = Helpers.CalculateHpByLevel(data.HP, data.Level);
+            HP = (int)Math.Round(MaxHP * data.CurrentHP);
+            MaxMana = Helpers.CalculateStatByLevel(data.Mana, data.Level);
+            Mana = (int)Math.Round(MaxMana * data.CurrentMana);
+            Attack = Helpers.CalculateStatByLevel(data.Attack, data.Level);
+            Defense = Helpers.CalculateStatByLevel(data.Defense, data.Level);
+            SpAtk = Helpers.CalculateStatByLevel(data.SpAtk, data.Level);
+            SpDef = Helpers.CalculateStatByLevel(data.SpDef, data.Level);
+            Speed = Helpers.CalculateStatByLevel(data.Speed, data.Level);
+        }
+
+        public override string ToString()
+        {
+            int requiredExp = ExpRequirement.GetExpRequired(Level);
+            return $"Goofling Name: {Name}\n Types: " + (SecondaryType == Types.None ? PrimaryType : (PrimaryType + " - " + SecondaryType)) + $"\n Level: {Level}  Level progession: {Exp}/{requiredExp}\n Hp: {HP}/{MaxHP}\n Mana: {Mana}/{MaxMana}\n Attack: {Attack}\n Defense: {Defense}\n Sp.Atk: {SpAtk}\n Sp.Def: {SpDef}\n Speed: {Speed}";
         }
 
         #region HP
