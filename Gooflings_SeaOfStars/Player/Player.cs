@@ -11,10 +11,13 @@ namespace Gooflings
         public float posX;
         public float posY;
 
+        public Party Party { get; private set; }
+
         public Player()
         {
             posX = 0;
             posY = 0;
+            Party = new Party();
         }
 
     }

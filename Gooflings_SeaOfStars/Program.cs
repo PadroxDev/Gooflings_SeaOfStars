@@ -1,9 +1,6 @@
-
-﻿using Gooflings;
 using System;
 using Gooflings.Moves;
-
-
+using Gooflings.Managers;
 
 namespace Gooflings
 {
@@ -49,14 +46,17 @@ namespace Gooflings
 
             Resources resources = new Resources();
             Menu menu = new Menu();
-          
-
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
             grayanData.Level = 50;
             Goofling grayan = new(grayanData);
             GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
             danyData.Level = 50;
             Goofling dany = new(danyData);
+
+            player.Party.Members.Add(grayan);
+            player.Party.Members.Add(dany);
+
+            menu.DrawTeamMenu(player.Party.Members);
 
             Move move = resources.GetMove(MoveType.Croustifesses);
             move.OnAction(grayan, dany);
