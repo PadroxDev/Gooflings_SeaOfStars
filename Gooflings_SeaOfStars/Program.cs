@@ -1,6 +1,5 @@
 using System;
 using Gooflings.Moves;
-using Gooflings.Managers;
 
 namespace Gooflings
 {
@@ -51,23 +50,16 @@ namespace Gooflings
             grayanData.Level = 20;
             Goofling grayan = new(grayanData);
             GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
+            danyData.CurrentHP = 0.8252427f;
+
             danyData.Level = 32;
             Goofling dany = new(danyData);
 
-
-
-
             player.Party.Members.Add(grayan);
             player.Party.Members.Add(dany);
-            player.Party.Members.Add(grayan);
-            player.Party.Members.Add(dany);
-            player.Party.Members.Add(dany);
-            player.Party.Members.Add(grayan);
 
-            menu.DrawTeamMenu(player.Party.Members);
-
-            Move move = resources.GetMove(MoveType.Croustifesses);
-            move.OnAction(grayan, dany);
+            //Move move = resources.GetMove(MoveType.Croustifesses);
+            //move.OnAction(grayan, dany);
         }
     }
 }
