@@ -12,4 +12,9 @@
     <Folder Include="Managers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Pastel" Version="5.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
+  </ItemGroup>
+
 </Project>

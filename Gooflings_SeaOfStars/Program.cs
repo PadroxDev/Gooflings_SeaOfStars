@@ -17,13 +17,18 @@ namespace Gooflings
 
             // width = 180
             // heigh = 50
-
+            
             Console.Title = "Gooflings";
 
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
             InputManager input = new InputManager();
+            TxtReader text = new TxtReader("../../../Txt/ascii-art.txt");
+            PngReader img = new PngReader();
 
+            //Console.Write(text.txt);
+
+            /*
             while (true)
             {
                 bool pressed = Console.KeyAvailable;
@@ -62,7 +67,7 @@ namespace Gooflings
             Goofling dany = new(danyData);
 
             Move move = resources.GetMove(MoveType.Croustifesses);
-            move.OnAction(grayan, dany);
+            move.OnAction(grayan, dany);*/
         }
     }
 }
