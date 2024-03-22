@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Managers\" />
+    <Folder Include="img\" />
   </ItemGroup>
 
   <ItemGroup>

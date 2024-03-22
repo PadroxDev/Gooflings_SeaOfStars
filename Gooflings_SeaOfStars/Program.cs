@@ -17,16 +17,17 @@ namespace Gooflings
 
             // width = 180
             // heigh = 50
-            
+
             Console.Title = "Gooflings";
+
+            Dictionary<(int, int, int, int), char> UsedColor = new Dictionary<(int, int, int, int), char>();
 
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
             InputManager input = new InputManager();
-            TxtReader text = new TxtReader("../../../Txt/ascii-art.txt");
-            PngReader img = new PngReader();
 
-            //Console.Write(text.txt);
+            PngReader img = new PngReader(UsedColor);
+            TxtReader text = new TxtReader(UsedColor);
 
             /*
             while (true)

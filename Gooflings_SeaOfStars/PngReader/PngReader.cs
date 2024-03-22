@@ -11,19 +11,20 @@ namespace Gooflings
 {
     public class PngReader
     {
-        public Dictionary<(int, int, int, int), char> UsedColor;
+        
         int letterUsed;
         string Alphabet;
 
-        public PngReader()
-        {
-            UsedColor = new Dictionary<(int, int, int, int), char>();
+        public PngReader(Dictionary<(int, int, int, int), char> UsedColor)
+        {         
             letterUsed = 0; 
             Alphabet = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
-            PngToTxt("../../../Txt/pixil-frame-0.png", "../../../Txt/test.txt");
+
+            ImgDirectoryReader(UsedColor);
+
         }  
         
-        public void PngToTxt(string Pngfile, string txtPath)
+        public void PngToTxt(string Pngfile, string txtPath, Dictionary<(int, int, int, int), char> UsedColor)
         {
             Bitmap img = new Bitmap(Pngfile);
             StreamWriter txt = File.CreateText(txtPath);
@@ -54,7 +55,19 @@ namespace Gooflings
                 txt.Write('\n');
             }
             txt.Close();
-            Console.WriteLine(UsedColor.Count);
+        }
+
+        public void ImgDirectoryReader(Dictionary<(int, int, int, int), char> UsedColor)
+        {
+            DirectoryInfo folder = new DirectoryInfo("../../../img");
+            if (folder.Exists)
+            {
+                foreach (FileInfo file in folder.GetFiles())
+                {
+                    string txtname = "../../../Txt/" + file.Name + ".txt";
+                    PngToTxt(file.FullName, txtname, UsedColor);
+                }  
+            }
         }
     }
 

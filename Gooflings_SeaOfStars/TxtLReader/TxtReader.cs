@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Pastel;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,21 +13,43 @@ namespace Gooflings
     {
 
         public string txt;
+        public Dictionary<char, (int, int, int, int)> ColorDic;
 
-        public TxtReader(string filename)
+        public TxtReader(Dictionary<(int, int, int, int), char> UsedColor)
         {
-            txt = TxtRead(filename);
+            ColorDic = new Dictionary<char, (int, int, int, int)>();
+
+            foreach (KeyValuePair<(int, int, int, int), char> kvp in UsedColor)
+            {
+                ColorDic.Add(kvp.Value, kvp.Key);
+            }
+
+            TxtRead(ColorDic);
         }
 
-        public string TxtRead(string filename) 
+        public void TxtRead(Dictionary<char, (int, int, int, int)> ColorDic) 
         {
-            if (!File.Exists(filename))
+            DirectoryInfo folder = new DirectoryInfo("../../../Txt");
+            if (folder.Exists)
             {
-                return "error with file";
-            }
-            else 
-            {
-                return File.ReadAllText(filename);
+                foreach (FileInfo file in folder.GetFiles())
+                {
+                    string[] text = File.ReadAllLines(file.FullName);
+
+                    foreach( string line in text)
+                    {
+                        foreach (char c in line)
+                        {
+                            if (ColorDic.TryGetValue(c, out (int, int, int, int) list))
+                            {
+                                Console.Write(c.ToString().Pastel(Color.FromArgb(list.Item1 - 10, list.Item2, list.Item3, list.Item4)).PastelBg(Color.FromArgb(list.Item1, list.Item2, list.Item3, list.Item4)));
+                            }
+                        }
+
+                        Console.WriteLine();
+
+                    }
+                }
             }
         }
     }
