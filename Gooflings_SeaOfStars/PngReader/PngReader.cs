@@ -29,13 +29,13 @@ namespace Gooflings
             Bitmap img = new Bitmap(Pngfile);
             StreamWriter txt = File.CreateText(txtPath);
 
-            for (int i = 0; i < img.Width; i++)
+            for (int i = 0; i < img.Height; i++)
             {
-                for (int j = 0; j < img.Height; j++)
+                for (int j = 0; j < img.Width; j++)
                 {
                     (int, int, int, int) list;
 
-                    Color pixel = img.GetPixel(i, j);
+                    Color pixel = img.GetPixel(j, i);
                     
                     list = (pixel.A, pixel.R, pixel.G, pixel.B);
 

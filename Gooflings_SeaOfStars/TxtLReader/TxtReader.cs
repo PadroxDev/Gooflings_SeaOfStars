@@ -35,9 +35,12 @@ namespace Gooflings
                 foreach (FileInfo file in folder.GetFiles())
                 {
                     string[] text = File.ReadAllLines(file.FullName);
+                    
+                    // les lignes s'affiche mal car avec les lettres il faut une windows size de 250 par 50 pour afficher une ligne entiere
 
                     foreach( string line in text)
                     {
+
                         foreach (char c in line)
                         {
                             if (ColorDic.TryGetValue(c, out (int, int, int, int) list))
