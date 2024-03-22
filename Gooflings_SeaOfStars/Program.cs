@@ -58,6 +58,7 @@ namespace Gooflings
             player.Party.Members.Add(grayan);
             player.Party.Members.Add(dany);
 
+            Console.WriteLine(dany);
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
         }
