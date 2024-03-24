@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Gooflings
 {
-    public class TxtReader
+    public class MapTxtReader
     {
 
         public string txt;
         public Dictionary<char, (int, int, int, int)> ColorDic;
 
-        public TxtReader(Dictionary<(int, int, int, int), char> UsedColor)
+        public MapTxtReader(Dictionary<(int, int, int, int), char> UsedColor)
         {
             ColorDic = new Dictionary<char, (int, int, int, int)>();
 
@@ -24,12 +24,12 @@ namespace Gooflings
                 ColorDic.Add(kvp.Value, kvp.Key);
             }
 
-            TxtRead(ColorDic);
+            MapTxtRead(ColorDic);
         }
 
-        public void TxtRead(Dictionary<char, (int, int, int, int)> ColorDic) 
+        public void MapTxtRead(Dictionary<char, (int, int, int, int)> ColorDic) 
         {
-            DirectoryInfo folder = new DirectoryInfo("../../../Txt");
+            DirectoryInfo folder = new DirectoryInfo("../../../MapTxt");
             if (folder.Exists)
             {
                 foreach (FileInfo file in folder.GetFiles())

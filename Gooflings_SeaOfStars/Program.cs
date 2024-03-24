@@ -26,8 +26,8 @@ namespace Gooflings
             Player player = new Player();
             InputManager input = new InputManager();
 
-            PngReader img = new PngReader(UsedColor);
-            TxtReader text = new TxtReader(UsedColor);
+            MapPngReader img = new MapPngReader(UsedColor);
+            MapTxtReader text = new MapTxtReader(UsedColor);
 
             /*
             while (true)

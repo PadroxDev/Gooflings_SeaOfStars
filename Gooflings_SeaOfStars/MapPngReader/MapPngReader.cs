@@ -9,13 +9,13 @@ using System.Collections.Immutable;
 
 namespace Gooflings
 {
-    public class PngReader
+    public class MapPngReader
     {
         
         int letterUsed;
         string Alphabet;
 
-        public PngReader(Dictionary<(int, int, int, int), char> UsedColor)
+        public MapPngReader(Dictionary<(int, int, int, int), char> UsedColor)
         {         
             letterUsed = 0; 
             Alphabet = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
@@ -64,7 +64,7 @@ namespace Gooflings
             {
                 foreach (FileInfo file in folder.GetFiles())
                 {
-                    string txtname = "../../../Txt/" + file.Name + ".txt";
+                    string txtname = "../../../MapTxt/" + file.Name + ".txt";
                     PngToTxt(file.FullName, txtname, UsedColor);
                 }  
             }
