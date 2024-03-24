@@ -8,7 +8,6 @@ namespace Gooflings
 {
     public class InputManager
     {
-
         private Dictionary<string, bool> keyList;
         public InputManager()
         {
