@@ -46,7 +46,7 @@ namespace Gooflings {
 
         private void NavigateUpwards() {
             int tmp = SelectedIndex - GetColOffset() - 1;
-            int delta = tmp % Rows;
+            int delta = tmp < 0 ? Rows - tmp : tmp % Rows;
             SelectedIndex = delta + GetColOffset();
         }
 
