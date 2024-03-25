@@ -10,42 +10,14 @@ namespace Gooflings
         {
 
             Console.Title = "Gooflings";
-            Console.SetWindowSize(180,50);
+            Console.SetWindowSize(160, 30);
           
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
             InputManager input = new InputManager();
-
-            //while (true)
-            //{
-            //    bool pressed = Console.KeyAvailable;
-            //    movement.DoesMove(pressed, player, input);
-
-            //    for (int i = 0; i < 10; i++)
-            //    {
-            //        for (int j = 0;j < 10; j++)
-            //        {
-            //            if (i == player.posY && j == player.posX)
-            //            {
-            //                Console.Write("0");
-            //            }
-            //            else
-            //            {
-            //                Console.Write(".");
-            //            }
-                        
-            //        } 
-            //        Console.WriteLine();
-            //    }
-
-            //    Thread.Sleep(1000);
-            //    Console.Clear();
-
-            //}
-
-
             Resources resources = new Resources();
             Menu menu = new Menu();
+
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
             grayanData.Level = 20;
             Goofling grayan = new(grayanData);
@@ -59,6 +31,7 @@ namespace Gooflings
             player.Party.Members.Add(dany);
 
             Console.WriteLine(dany);
+            menu.DrawTitleMenu();
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
         }

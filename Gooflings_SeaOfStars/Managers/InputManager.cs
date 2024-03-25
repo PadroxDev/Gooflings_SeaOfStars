@@ -46,7 +46,7 @@ namespace Gooflings
             }
             else // up -> reset
             {
-                // comment faire pour que ce s'active que quand la touche est lacher 
+                // comment faire pour que ce s'active que quand la touche est lachée 
 
                 keyList = keyList.ToDictionary(p => p.Key, p => false);
 
