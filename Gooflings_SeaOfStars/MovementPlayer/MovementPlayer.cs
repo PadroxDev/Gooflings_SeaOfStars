@@ -13,7 +13,7 @@ namespace Gooflings
         {
 
         }
-
+        /*
         public void DoesMove(bool pressed, Player player, InputManager input)
         {
             string key = input.SetKeyState(pressed);
@@ -36,7 +36,7 @@ namespace Gooflings
                 }
             }
         }
-
+        */
         private void GoUp(Player player)
         {
             if (player.posY > 0)
