@@ -33,7 +33,7 @@ namespace Gooflings
         {
             TrainerType = data.TrainerType;   
             Name = data.Name;
-            Party = new Party()
+            Party = new Party();
         }
 
         ~Trainer()
