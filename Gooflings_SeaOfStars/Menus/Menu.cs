@@ -2,13 +2,72 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Gooflings
 {
+
     public class Menu
     {
+        public enum MenusDisplay
+        {
+            Title,
+            MainMenu,
+            GooflingMenu,
+            GooflingStat,
+            BagMenu,
+            Battle,
+        }
+
+        private int _selectedIndex;
+        private string[] _options;
+        private string _prompt;
+        string title = @"
+                       _____                 __  _  _                    
+                      / ____|               / _|| |(_)                   
+                     | |  __   ___    ___  | |_ | | _  _ __    __ _  ___ 
+                     | | |_ | / _ \  / _ \ |  _|| || || '_ \  / _` |/ __|
+                     | |__| || (_) || (_) || |  | || || | | || (_| |\__ \
+                      \_____| \___/  \___/ |_|  |_||_||_| |_| \__, ||___/
+                                                               __/ |     
+                                                              |___/      ";
+        string start = @" 
+                       _____  _                _   
+                      / ____|| |              | |  
+                     | (___  | |_  __ _  _ __ | |_ 
+                      \___ \ | __|/ _` || '__|| __|
+                      ____) || |_| (_| || |   | |_ 
+                     |_____/  \__|\__,_||_|    \__|";
+
+        string load = @"
+                      _                        _ 
+                     | |                      | |
+                     | |      ___    __ _   __| |
+                     | |     / _ \  / _` | / _` |
+                     | |____| (_) || (_| || (_| |
+                     |______|\___/  \__,_| \__,_|";
+
+        string credits = @"
+                       _____                 _  _  _        
+                      / ____|               | |(_)| |       
+                     | |      _ __  ___   __| | _ | |_  ___ 
+                     | |     | '__|/ _ \ / _` || || __|/ __|
+                     | |____ | |  |  __/| (_| || || |_ \__ \
+                      \_____||_|   \___| \__,_||_| \__||___/";
+
+        string extra = @"
+                      ______        _  _   
+                     |  ____|      (_)| |  
+                     | |__   __  __ _ | |_ 
+                     |  __|  \ \/ /| || __|
+                     | |____  >  < | || |_ 
+                     |______|/_/\_\|_| \__|";
+
+        string gooflingMenu = @"";
+        
 
         public void DrawMenuDeco()
         {
@@ -21,53 +80,31 @@ namespace Gooflings
             }
         }
         
-                    string title = @"
-                       _____                 __  _  _                    
-                      / ____|               / _|| |(_)                   
-                     | |  __   ___    ___  | |_ | | _  _ __    __ _  ___ 
-                     | | |_ | / _ \  / _ \ |  _|| || || '_ \  / _` |/ __|
-                     | |__| || (_) || (_) || |  | || || | | || (_| |\__ \
-                      \_____| \___/  \___/ |_|  |_||_||_| |_| \__, ||___/
-                                                               __/ |     
-                                                              |___/      ";
-                    string start = @" 
-                       _____  _                _   
-                      / ____|| |              | |  
-                     | (___  | |_  __ _  _ __ | |_ 
-                      \___ \ | __|/ _` || '__|| __|
-                      ____) || |_| (_| || |   | |_ 
-                     |_____/  \__|\__,_||_|    \__|";
 
-                    string load = @"
-                      _                        _ 
-                     | |                      | |
-                     | |      ___    __ _   __| |
-                     | |     / _ \  / _` | / _` |
-                     | |____| (_) || (_| || (_| |
-                     |______|\___/  \__,_| \__,_|";
-
-                    string credits = @"
-                       _____                 _  _  _        
-                      / ____|               | |(_)| |       
-                     | |      _ __  ___   __| | _ | |_  ___ 
-                     | |     | '__|/ _ \ / _` || || __|/ __|
-                     | |____ | |  |  __/| (_| || || |_ \__ \
-                      \_____||_|   \___| \__,_||_| \__||___/";
-
-                    string extra = @"
-                      ______        _  _   
-                     |  ____|      (_)| |  
-                     | |__   __  __ _ | |_ 
-                     |  __|  \ \/ /| || __|
-                     | |____  >  < | || |_ 
-                     |______|/_/\_\|_| \__|";
-        
-
-        public void DrawTitleMenu()
+        public void DrawTitleMenu(string[] titleOptions)
         {
-            Console.Clear();
+            _options = titleOptions;
+            _selectedIndex = 0;
+        }
 
-           Console.WriteLine(title);
+        public void displayMenus()
+        {
+            string[] options = _options;
+            int m = 0;
+            switch(m)
+            {
+                case MenusDisplay.Title:
+                    DrawTitleMenu();
+                    break;
+                default:
+                    break;
+            }
+
+            for (int i = 0; i < _options.Length; i++)
+            {
+                string currentOption = _options[i];
+                Console.WriteLine(currentOption);
+            }
         }
 
         public void DrawMainMenu()

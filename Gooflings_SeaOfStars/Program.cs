@@ -30,8 +30,11 @@ namespace Gooflings
             player.Party.Members.Add(grayan);
             player.Party.Members.Add(dany);
 
-            Console.WriteLine(dany);
-            menu.DrawTitleMenu();
+
+            string[] options = { "oui","non", "merci", "papa?" };
+
+            menu.DrawTitleMenu(options);
+            menu.displayOptions();
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
         }
