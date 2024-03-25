@@ -114,7 +114,7 @@ namespace Gooflings
         public override string ToString()
         {
             int requiredExp = ExpRequirement.GetExpRequired(Level);
-            return $"Goofling Name: {Name}\n Types: " + (SecondaryType == Types.None ? PrimaryType : (PrimaryType + " - " + SecondaryType)) + $"\n Level: {Level}  Level progession: {Exp}/{requiredExp}\n Hp: {HP}/{MaxHP}\n Mana: {Mana}/{MaxMana}\n Attack: {Attack}\n Defense: {Defense}\n Sp.Atk: {SpAtk}\n Sp.Def: {SpDef}\n Speed: {Speed}";
+            return $" Goofling Name: {Name}\n Types: " + (SecondaryType == Types.None ? PrimaryType : (PrimaryType + " - " + SecondaryType)) + $"\n Level: {Level}  Level progession: {Exp}/{requiredExp}\n\n Hp: {HP}/{MaxHP}\n Mana: {Mana}/{MaxMana}\n\n Attack: {Attack}\n Defense: {Defense}\n Sp.Atk: {SpAtk}\n Sp.Def: {SpDef}\n Speed: {Speed}";
         }
 
         #region HP

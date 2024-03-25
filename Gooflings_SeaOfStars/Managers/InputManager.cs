@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gooflings.Managers
+namespace Gooflings
 {
     public class InputManager
     {

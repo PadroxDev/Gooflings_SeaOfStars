@@ -34,6 +34,12 @@ namespace Gooflings
             TrainerType = data.TrainerType;   
             Name = data.Name;
             Party = new Party();
+            foreach (TrainerGoofling member in data.Party)
+            {
+                GooflingData gooflingData = Resources.Instance.GetGooflingData(member.GooflingType);
+                Goofling goofling = new(gooflingData);
+                Party.Members.Add(goofling);
+            }
         }
 
         ~Trainer()
