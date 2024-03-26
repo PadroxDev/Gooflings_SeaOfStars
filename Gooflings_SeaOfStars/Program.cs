@@ -12,8 +12,8 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
-            Console.SetWindowSize(180, 50);
-            Console.SetBufferSize(180, 50);
+            Console.SetWindowSize(240, 62);
+            Console.SetBufferSize(240, 62);
 
             // width = 180
             // heigh = 50

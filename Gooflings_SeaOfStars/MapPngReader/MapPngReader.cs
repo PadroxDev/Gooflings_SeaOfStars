@@ -20,6 +20,15 @@ namespace Gooflings
             letterUsed = 0; 
             Alphabet = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
 
+            DirectoryInfo txtfolder = new DirectoryInfo("../../../MapTxt");
+            if (txtfolder.Exists)
+            {
+                foreach (FileInfo file in txtfolder.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
+
             ImgDirectoryReader(UsedColor);
 
         }  

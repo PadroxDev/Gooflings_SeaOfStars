@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="img\" />
+    <Folder Include="MapTxt\" />
   </ItemGroup>
 
   <ItemGroup>
