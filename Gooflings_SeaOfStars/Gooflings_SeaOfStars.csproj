@@ -7,5 +7,19 @@
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>Gooflings</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Managers\**" />
+    <EmbeddedResource Remove="Managers\**" />
+    <None Remove="Managers\**" />
+  </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="img\" />
+    <Folder Include="MapTxt\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pastel" Version="5.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
+  </ItemGroup>
 </Project>

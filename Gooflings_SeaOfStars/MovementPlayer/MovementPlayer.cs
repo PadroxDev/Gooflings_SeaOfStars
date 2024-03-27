@@ -8,9 +8,11 @@ namespace Gooflings
 {
     public class MovementPlayer
     {
+        Interaction interaction;
 
         public MovementPlayer()
         {
+            interaction = new Interaction();
 
         }
 
@@ -34,6 +36,29 @@ namespace Gooflings
                         GoRight(player);
                         break;
                 }
+            }
+        }
+
+        public void DoInteraction(int posX, int posY, string filename) 
+        {
+            string whathhapen = interaction.CheckInteraction(posX, posY, filename); 
+
+            switch (whathhapen)
+            {
+                case "To-Desert":
+                    // switch buffer to desert map
+                    break ;
+
+                case "To-Forest":
+                    // switch buffer to forest map
+                    break;
+
+                case "To-House" or "To-tippie":
+                    // switch buffer to shop
+                    break;
+
+                case "noting":
+                    break;
             }
         }
 
