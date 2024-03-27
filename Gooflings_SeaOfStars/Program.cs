@@ -9,7 +9,7 @@ namespace Gooflings
         {
             // Encapsuler dans une class App
             Console.Title = "Gooflings";
-            Console.SetWindowSize(180,50);
+            //Console.SetWindowSize(180,50);
 
             // Initialization
             Resources resources = new Resources();
