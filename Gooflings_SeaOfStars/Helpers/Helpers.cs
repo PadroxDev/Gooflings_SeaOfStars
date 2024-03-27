@@ -111,5 +111,27 @@ namespace Gooflings
             int randomByte = Rand.Next(256);
             return randomByte < threshold;
         }
+        /*
+        public static void PlaceElement(string elt, int divider)
+        {
+
+            int eltLength = elt.IndexOf('\r');
+            int count = elt.Count(f => f == '\r');
+            for (int i = 0; i < count; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth - eltLength) / divider, Console.CursorTop);
+                for (int j = 0; j < eltLength; j++)
+                {
+                    Console.Write(count);
+                }
+            }
+        }*/
+        public static void SkipLines(int lines)
+        {
+            for (int i = 0; i < lines; i++)
+            {
+                Console.WriteLine();
+            }
+        }
     }
 }

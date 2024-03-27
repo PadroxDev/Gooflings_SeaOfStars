@@ -8,9 +8,8 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
-
             Console.Title = "Gooflings";
-            Console.SetWindowSize(160, 30);
+            Console.SetWindowSize(180, 50);
           
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
@@ -31,10 +30,8 @@ namespace Gooflings
             player.Party.Members.Add(dany);
 
 
-            string[] options = { "oui","non", "merci", "papa?" };
 
-            menu.DrawTitleMenu(options);
-            menu.displayOptions();
+
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
         }
