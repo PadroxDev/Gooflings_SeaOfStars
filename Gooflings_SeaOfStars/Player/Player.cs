@@ -15,11 +15,13 @@ namespace Gooflings
 
         //public Dictionary<items, int> inventory;
         //public Dictionary<Goofling, int> CapturedGoofling;
+        public Party Party { get; private set; }
 
         public Player()
         {
             posX = 0;
             posY = 0;
+            Party = new Party();
         }
 
     }

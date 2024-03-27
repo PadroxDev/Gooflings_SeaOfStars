@@ -21,6 +21,7 @@ namespace Gooflings.Moves
         public override void OnAction(Goofling attacker, Goofling target)
         {
             int dmg = Helpers.CalculateDamageToDeal(attacker, target, this);
+            Console.WriteLine($"{attacker.HP} / {attacker.MaxHP}");
             Console.WriteLine("Deal damage to " + target.Name + ": " + dmg);
             target.TakeDamage(dmg);
         }

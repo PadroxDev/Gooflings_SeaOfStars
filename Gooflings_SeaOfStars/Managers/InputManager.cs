@@ -26,7 +26,6 @@ namespace Gooflings
             keyList.Add("DownArrow", false);
             keyList.Add("LeftArrow", false);
             keyList.Add("RightArrow", false);
-
         }
 
         public string SetKeyState(bool pressed)

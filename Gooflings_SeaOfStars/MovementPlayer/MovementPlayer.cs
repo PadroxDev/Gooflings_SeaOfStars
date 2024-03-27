@@ -37,7 +37,6 @@ namespace Gooflings
                         break;
                 }
             }
-
         }
 
         public void DoInteraction(int posX, int posY, string filename) 

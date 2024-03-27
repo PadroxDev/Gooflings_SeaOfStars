@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,7 +7,6 @@
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>Gooflings</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Managers\**" />
     <EmbeddedResource Remove="Managers\**" />
@@ -23,5 +22,4 @@
     <PackageReference Include="Pastel" Version="5.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
   </ItemGroup>
-
 </Project>
