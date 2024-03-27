@@ -12,6 +12,10 @@
     <EmbeddedResource Remove="Managers\**" />
     <None Remove="Managers\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Managers\BattleManager.cs" />
+    <Compile Include="Managers\InputManager.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="img\" />

@@ -40,8 +40,7 @@ namespace Gooflings
 
                     foreach( string line in text)
                     {
-
-                        foreach (char c in line)
+                        foreach (char c in line.Substring(0,180))
                         {
                             if (ColorDic.TryGetValue(c, out (int, int, int, int) list))
                             {

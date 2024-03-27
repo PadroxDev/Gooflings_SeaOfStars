@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Gooflings.Battle
+namespace Gooflings
 {
     public enum BattleState
     {
@@ -13,7 +13,7 @@ namespace Gooflings.Battle
         Cleanup,
     }
 
-    public enum Action
+    public enum zeze
     {
         Swap,
         Item,
@@ -22,6 +22,10 @@ namespace Gooflings.Battle
 
     public class BattleManager
     {
+
+        public Goofling PlayerGoofling;
+        public Goofling EnemyGoofling;
+
         public BattleState State { get; private set; }
 
         public Player Player { get; private set; }
@@ -57,9 +61,10 @@ namespace Gooflings.Battle
             }
         }
 
-        void HandleSpawnGooflings()
+        void HandleSpawnGooflings(Goofling goofling)
         {
-
+            PlayerGoofling = Player.Party.Members[0];
+            EnemyGoofling = goofling;
         }
 
         void HandleWaitForAction()
@@ -67,14 +72,48 @@ namespace Gooflings.Battle
 
         }
 
-        void HandleEvaluateActionOrder()
+        void HandleEvaluateActionOrder(string Playermove)
         {
-
+            switch (Playermove)
+            {
+                case "attack":
+                    if (PlayerGoofling.Speed > EnemyGoofling.Speed)
+                    {
+                        HandleExecuteActions("player");
+                        break;
+                    }
+                    if (PlayerGoofling.Speed < EnemyGoofling.Speed)
+                    {
+                        HandleExecuteActions("enemy");
+                        break;
+                    }
+                    else // both SpAtk are the same
+                    {
+                        HandleExecuteActions("player");
+                        break;
+                    }
+                case "chnageOfGoofling":
+                    HandleExecuteActions("player");
+                    break;
+                case "other":
+                    HandleExecuteActions("enemy");
+                    break;
+            } 
         }
 
-        void HandleExecuteActions()
+        void HandleExecuteActions(string FirstPlayer)
         {
-
+            switch(FirstPlayer)
+            {
+                case "player":
+                    // player move
+                    // enemy move
+                    break;
+                case "enemy":
+                    // enemy move
+                    // player move
+                    break;
+            }
         }
 
         void HandleSwapGoofling()

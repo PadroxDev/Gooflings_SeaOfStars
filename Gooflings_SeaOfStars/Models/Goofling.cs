@@ -82,12 +82,12 @@ namespace Gooflings
 
         #region Events
 
-        public Action<float> OnExpEarned;
-        public Action<int> OnLevelUp;
+        public event Action<float> OnExpEarned;
+        public event Action<int> OnLevelUp;
 
-        public Action<int> OnReceiveHealing;
-        public Action<int> OnTakeDamage;
-        public Action OnFaint;
+        public event Action<int> OnReceiveHealing;
+        public event Action<int> OnTakeDamage;
+        public event Action OnFaint;
         
         #endregion
 

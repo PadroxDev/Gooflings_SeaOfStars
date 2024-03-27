@@ -51,14 +51,12 @@ namespace Gooflings
                     if (UsedColor.TryGetValue(list,out char c))
                     {
                         txt.Write(c);
-                        txt.Write(" ");
                     }
                     else
                     {
                         UsedColor.Add(list, Alphabet[letterUsed]);
-                        letterUsed++;
                         txt.Write(Alphabet[letterUsed]);
-                        txt.Write(" ");
+                        letterUsed++;
                     }
                 }
                 txt.Write('\n');

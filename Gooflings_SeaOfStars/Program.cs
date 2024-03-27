@@ -8,15 +8,14 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
-            Console.SetWindowSize(240, 62);
-            Console.SetBufferSize(240, 62);
+            //Console.SetWindowSize(240, 62);
+            //Console.SetBufferSize(240, 62);
 
             // width = 180
             // heigh = 50
 
             Console.Title = "Gooflings";
             Dictionary<(int, int, int, int), char> UsedColor = new Dictionary<(int, int, int, int), char>();
-            Console.SetWindowSize(180,50);
             MovementPlayer movement = new MovementPlayer();
             Player player = new Player();
             InputManager input = new InputManager();
@@ -80,9 +79,9 @@ namespace Gooflings
             Goofling dany = new(danyData);
             Move move = resources.GetMove(MoveType.Croustifesses);
             move.OnAction(grayan, dany);*/
-            player.Party.Members.Add(grayan);
-            player.Party.Members.Add(dany);
-            Console.WriteLine(dany);
+            //player.Party.Members.Add(grayan);
+            //player.Party.Members.Add(dany);
+            //Console.WriteLine(dany);
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
         }
