@@ -1,5 +1,6 @@
 using System;
 using Gooflings.Moves;
+using Gooflings.Systems;
 
 namespace Gooflings
 {
@@ -7,6 +8,17 @@ namespace Gooflings
     {
         public static void Main(string[] args)
         {
+            int width = 180;
+            int height = 50;
+
+            Renderer.Initialize(width, height);
+
+            //if (Console.WindowLeft + Console.WindowWidth < width && Console.WindowTop + Console.WindowHeight < height)
+            //    System.Console.SetBufferSize(width, height);
+
+            //System.Console.SetWindowSize(width, height);
+
+
             // Encapsuler dans une class App
             Console.Title = "Gooflings";
             //Console.SetWindowSize(180,50);
@@ -25,19 +37,28 @@ namespace Gooflings
 
                 int[,] buffer = new int[nav.Columns, nav.Rows];
 
-                for (int x = 0; x < nav.Columns; x++) {
-                    for (int y = 0; y < nav.Rows; y++) {
-                        int v = x * nav.Rows + y;
-                        buffer[x, y] = nav.SelectedIndex == v ? 'S' : v;
-                    }
-                }
+                Renderer.Clear();
 
-                for (int x = 0;  x < nav.Rows;  x++) {
-                    for (int y = 0; y < nav.Columns; y++) {
-                        Console.Write(buffer[y, x] == 83 ? "P ," : buffer[y, x] + " ,");
-                    }
-                    Console.WriteLine();
-                }
+                Renderer.RenderBuffer[0][0] = 'x';
+                Renderer.RenderBuffer[1][1] = 'y';
+
+                Renderer.Flush();
+
+                Thread.Sleep(250);
+
+                //for (int x = 0; x < nav.Columns; x++) {
+                //    for (int y = 0; y < nav.Rows; y++) {
+                //        int v = x * nav.Rows + y;
+                //        buffer[x, y] = nav.SelectedIndex == v ? 'S' : v;
+                //    }
+                //}
+
+                //for (int x = 0;  x < nav.Rows;  x++) {
+                //    for (int y = 0; y < nav.Columns; y++) {
+                //        Console.Write(buffer[y, x] == 83 ? "P ," : buffer[y, x] + " ,");
+                //    }
+                //    Console.WriteLine();
+                //}
 
                 //movement.DoesMove(player, inputManager);
 
@@ -52,11 +73,9 @@ namespace Gooflings
                 //    Console.WriteLine();
                 //}
 
-                Thread.Sleep(250);
-                Console.Clear();
+                //Thread.Sleep(250);
+                //Console.Clear();
             }
-
-
 
             //Menu menu = new Menu();
             //GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
