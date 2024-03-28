@@ -17,6 +17,7 @@ namespace Gooflings
             Resources resources = new Resources();
             Menu menu = new Menu();
 
+
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
             grayanData.Level = 20;
             Goofling grayan = new(grayanData);
@@ -29,9 +30,8 @@ namespace Gooflings
             player.Party.Members.Add(grayan);
             player.Party.Members.Add(dany);
 
-
-
-
+            menu.displayMenus();
+            
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
         }

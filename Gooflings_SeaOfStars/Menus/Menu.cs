@@ -25,14 +25,16 @@ namespace Gooflings
 
         }
 
+        InputManager input;
         private int _selectedIndex;
         private string[] _options;
         private string _prompt;
 
         #region stings
 
-        string title = @"  _____                 __  _  _                    
-/ ____|               / _|| |(_)                   
+        string title = @"
+  _____                 __  _  _                    
+ / ____|               / _|| |(_)                   
 | |  __   ___    ___  | |_ | | _  _ __    __ _  ___ 
 | | |_ | / _ \  / _ \ |  _|| || || '_ \  / _` |/ __|
 | |__| || (_) || (_) || |  | || || | | || (_| |\__ \
@@ -44,21 +46,24 @@ namespace Gooflings
 | (___  | |_  __ _  _ __ | |_ 
  \___ \ | __|/ _` || '__|| __|
  ____) || |_| (_| || |   | |_ 
-|_____/  \__|\__,_||_|    \__|";
+|_____/  \__|\__,_||_|    \__|
+";
 
         string load = @" _                        _ 
 | |                      | |
 | |      ___    __ _   __| |
 | |     / _ \  / _` | / _` |
 | |____| (_) || (_| || (_| |
-|______|\___/  \__,_| \__,_|";
+|______|\___/  \__,_| \__,_|
+";
 
         string credits = @"  _____                 _  _  _        
  / ____|               | |(_)| |       
 | |      _ __  ___   __| | _ | |_  ___ 
 | |     | '__|/ _ \ / _` || || __|/ __|
 | |____ | |  |  __/| (_| || || |_ \__ \
- \_____||_|   \___| \__,_||_| \__||___/";
+ \_____||_|   \___| \__,_||_| \__||___/
+";
 
 
 
@@ -67,14 +72,30 @@ namespace Gooflings
 | |__   __  __ _ | |_ 
 |  __|  \ \/ /| || __|
 | |____  >  < | || |_ 
-|______|/_/\_\|_| \__|";
+|______|/_/\_\|_| \__|
+";
 
-        string gooflingMenu = @"";
+        string gooflingMenuG = $" __________________________  \n|                          |\n|{returnCenteredLine("Gooflings",26)}|\n|__________________________|\n";
+        string gooflingMenuB = $" __________________________  \n|                          |\n|{returnCenteredLine("Sac",26)}|\n|__________________________|\n";
+        string gooflingMenuS = $" __________________________  \n|                          |\n|{returnCenteredLine("Sauvegarde",26)}|\n|__________________________|\n";
+        string gooflingMenuQ = $" __________________________  \n|                          |\n|{returnCenteredLine("Quitter",26)}|\n|__________________________|\n";
+
+        string missingno = @"⠀⠀⠀⠀⡆⠁⢿⡯⡟⡝⣿⠂
+⠀⠀⠀⠀⡟⠿⢷⣶⢙⣽⠖⡇
+⠀⠀⠀⠀⡷⣍⣭⣍⣍⣿⣟⡇
+⠀⠀⠀⠀⣗⣟⣿⣯⣟⣿⣛⠆
+⠀⠀⠀⠀⡷⣴⣵⣟⣑⣫⣥⡇
+⢰⠒⠒⢶⣷⢶⣽⣟⠷⣳⢬⠇
+⢸⣖⣒⣺⡷⢿⢦⡴⠹⣾⡛⡇
+⢸⣗⣒⣿⣾⣿⡹⣇⣿⣏⣚⡇
+⢸⣹⡻⣻⡻⣻⢓⣯⣶⣾⣯⠇
+⢸⣀⣀⣀⣁⢩⣴⢯⣯⣟⡝⡇
+⢸⣤⣴⣶⢎⢿⠉⣽⡿⣻⣮⡇
+⢸⠶⢖⡿⢛⣛⢭⡵⡞⠇⣷⡇";
         #endregion
 
         public void displayMenus()
         {
-            string[] options = _options;
             int menuState = 0;
             switch (menuState)
             {
@@ -88,7 +109,7 @@ namespace Gooflings
                     //DrawTeamMenu();
                     break;
                 case (int)MenusDisplay.GooflingStat:
-                    DrawGooflingStatMenu();
+                    //DrawGooflingStatMenu();
                     break;
                 case (int)MenusDisplay.BagMenu:
                     DrawBagMenu();
@@ -100,51 +121,90 @@ namespace Gooflings
                     break;
             }
         }
+       
 
         private void DrawSaveMenu()
         {
             throw new NotImplementedException();
         }
     
+        //public void DrawTitleMenu() 
+        //{
+        //    string[] titleOptions = { start, load, credits, exit };
+        //    _options =  titleOptions;
+        //    _selectedIndex = 0;
+            
+        //    PlaceElement(title, 2);
+        //    for (int i = 0; i < _options.Length; i++)
+        //    {
+        //        string currentOption = _options[i];
+        //        if (i == _selectedIndex)
+        //        {
+        //            Console.ForegroundColor = ConsoleColor.Blue;
+        //            Console.BackgroundColor = ConsoleColor.Green;
+        //            Console.Write(currentOption);
+        //        }
+        //        else
+        //        {
+        //            Console.Write(currentOption);
+        //        }
+        //        Console.ResetColor();
+        //    }
+        //} 
         public void DrawTitleMenu() 
         {
             string[] titleOptions = { start, load, credits, exit };
             _options =  titleOptions;
             _selectedIndex = 0;
-            /*
-            Helpers.PlaceElement(title, 2);*/
-            Helpers.SkipLines(10);
+            
+            PlaceElement(title, 2);
             for (int i = 0; i < _options.Length; i++)
             {
                 string currentOption = _options[i];
                 if (i == _selectedIndex)
                 {
-
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.BackgroundColor = ConsoleColor.Green;
                     Console.Write(currentOption);
                 }
-                Console.Write(currentOption);
+                else
+                {
+                    Console.Write(currentOption);
+                }
+                Console.ResetColor();
             }
         }
 
 
-        private void DrawGooflingStatMenu()
+        public void DrawGooflingStatMenu(Goofling goofling)
         {
-            throw new NotImplementedException();
+            Console.Clear();
+
+            Console.WriteLine(goofling);
         }
 
         public void DrawMainMenu()
         {
             Console.Clear();
 
-            Console.WriteLine(" __________________________     _________________________ ");
-            Console.WriteLine("|                          |   |                         |");
-            Console.WriteLine("|        Gooflings         |   |           Sac           |");
-            Console.WriteLine("|__________________________|   |_________________________|");
-            Console.WriteLine(" __________________________     _________________________ ");
-            Console.WriteLine("|                          |   |                         |");
-            Console.WriteLine("|        Sauvegarde        |   |         Quitter         |");
-            Console.WriteLine("|__________________________|   |_________________________|");
+            string[] MainOptions = { gooflingMenuG, gooflingMenuB, gooflingMenuS, gooflingMenuQ };
+            _options = MainOptions;
+            _selectedIndex = 0;
 
+            for (int i = 0; i < _options.Length; i++)
+            {
+                string currentOption = _options[i];
+                if (i == _selectedIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(currentOption);
+                }
+                else
+                {
+                    Console.Write(currentOption);
+                }
+                Console.ResetColor();
+            }
         }
         
         public void DrawBattleMenu() 
@@ -213,6 +273,8 @@ namespace Gooflings
             Console.WriteLine("                          |__________________________________________|");
         }
 
+        
+
         public string returnStringName(Goofling goofling,int space)
         {
             string str = $" {goofling.Name} Niv.{goofling.Level}";
@@ -242,5 +304,35 @@ namespace Gooflings
             }
             return str;
         }
+        public static string returnCenteredLine(string prompt, int space)
+        {
+            string str = $"{prompt}";
+            int rest = space - str.Length;
+            if (rest > 0) {
+                for (int i = 0; i < rest/2; i++)
+                {
+                    str = " " + str ;
+                }
+               return str + new string(' ', Maths.IsEven(rest)? rest/2 : rest/2+1);
+            }
+            return str;
+        }
+        public static void PlaceElement(string elt, int divider)
+        {
+            int eltLength = elt.IndexOf('\r');
+            int offset = eltLength;
+            int count = elt.Count(f => f == '\r');
+            for (int i = 0; i < count; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth - eltLength) / divider, Console.CursorTop);
+                for (int j = 0; j < count; j += offset)
+                {
+                    string eltLine = elt.Substring(0 + offset, eltLength + offset);
+                    Console.Write(eltLine);
+                    Console.Write('\n');
+                }
+            }
+        }
+
     }
 }
