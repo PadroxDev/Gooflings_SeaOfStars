@@ -1,49 +1,42 @@
 using System;
+using System.Drawing;
 using Gooflings.Moves;
-using Gooflings.Systems;
 
 namespace Gooflings
 {
     public class Program
     {
+        private static int _consoleWidth = 180;
+        private static int _consoleHeight = 50;
+
         public static void Main(string[] args)
         {
-            int width = 180;
-            int height = 50;
-
-            Renderer.Initialize(width, height);
+            Renderer.Initialize(_consoleWidth, _consoleHeight);
 
             //if (Console.WindowLeft + Console.WindowWidth < width && Console.WindowTop + Console.WindowHeight < height)
             //    System.Console.SetBufferSize(width, height);
 
             //System.Console.SetWindowSize(width, height);
 
-
-            // Encapsuler dans une class App
-            Console.Title = "Gooflings";
-            //Console.SetWindowSize(180,50);
-
-            // Initialization
+            // Initialization 
             Resources resources = new Resources();
-            MovementPlayer movement = new MovementPlayer();
-            Player player = new Player();
             InputManager inputManager = new InputManager();
-            NavMenu nav = new(inputManager, 3, 4);
+            Player player = new Player();
+            MovementPlayer movement = new MovementPlayer();
+            //NavMenu nav = new(inputManager, 3, 4);
+
 
             // Gameloop
-            while (true) {
+            while (true)
+            {
+                //    nav.Update();
+
+                //    int[,] buffer = new int[nav.Columns, nav.Rows];
+
                 inputManager.Update();
-                nav.Update();
-
-                int[,] buffer = new int[nav.Columns, nav.Rows];
-
-                Renderer.Clear();
-
-                Renderer.RenderBuffer[0][0] = 'x';
-                Renderer.RenderBuffer[1][1] = 'y';
-
+                movement.DoesMove(player, inputManager);
+                player.Draw();
                 Renderer.Flush();
-
                 Thread.Sleep(250);
 
                 //for (int x = 0; x < nav.Columns; x++) {
@@ -59,9 +52,6 @@ namespace Gooflings
                 //    }
                 //    Console.WriteLine();
                 //}
-
-                //movement.DoesMove(player, inputManager);
-
                 //for (int i = 0; i < 10; i++) {
                 //    for (int j = 0; j < 10; j++) {
                 //        if (i == player.posY && j == player.posX) {
@@ -75,24 +65,25 @@ namespace Gooflings
 
                 //Thread.Sleep(250);
                 //Console.Clear();
+                //}
+
+                //Menu menu = new Menu();
+                //GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
+                //grayanData.Level = 20;
+                //Goofling grayan = new(grayanData);
+                //GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
+                //danyData.CurrentHP = 0.8252427f;
+
+                //danyData.Level = 32;
+                //Goofling dany = new(danyData);
+
+                //player.Party.Members.Add(grayan);
+                //player.Party.Members.Add(dany);
+
+                //Console.WriteLine(dany);
+                //Move move = resources.GetMove(MoveType.Croustifesses);
+                //move.OnAction(grayan, dany);
             }
-
-            //Menu menu = new Menu();
-            //GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
-            //grayanData.Level = 20;
-            //Goofling grayan = new(grayanData);
-            //GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
-            //danyData.CurrentHP = 0.8252427f;
-
-            //danyData.Level = 32;
-            //Goofling dany = new(danyData);
-
-            //player.Party.Members.Add(grayan);
-            //player.Party.Members.Add(dany);
-
-            //Console.WriteLine(dany);
-            //Move move = resources.GetMove(MoveType.Croustifesses);
-            //move.OnAction(grayan, dany);
         }
     }
 }
