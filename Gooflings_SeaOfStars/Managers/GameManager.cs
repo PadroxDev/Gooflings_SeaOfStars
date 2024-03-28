@@ -37,8 +37,6 @@ namespace Gooflings
             State = GameState.Exploring;
             CurrentMap = "Forest";
 
-            State = GameState.TitleMenu;
-
             //GooflingData rayanData = _resources.GetGooflingData(GooflingType.Radany);
             //rayanData.Level = 12;
             //rayanData.Exp = 100;
@@ -46,7 +44,8 @@ namespace Gooflings
             //_player.Party.Members.Add(rayan);
 
             Serializer.Load(_player);
-            _menu.DrawBattleMenu(_player.Party.Members,);
+            //_menu.DrawBattleMenu(_player.Party.Members,);
+            _menu.DrawTitleMenu();
         }
 
         public void Update()
