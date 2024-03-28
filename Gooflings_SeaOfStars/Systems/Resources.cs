@@ -70,8 +70,28 @@ namespace Gooflings
             {
                 TrainerType = TrainerType.Alice,
                 Name = "Alice",
-                Party = new TrainerGoofling[2]
+                Party = new TrainerGoofling[6]
                 {
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Grayan,
+                        Level = 12
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Radany,
+                        Level = 14
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Grayan,
+                        Level = 12
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Radany,
+                        Level = 14
+                    },
                     new TrainerGoofling()
                     {
                         GooflingType = GooflingType.Grayan,

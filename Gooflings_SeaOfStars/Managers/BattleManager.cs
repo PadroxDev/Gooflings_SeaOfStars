@@ -16,12 +16,12 @@ namespace Gooflings
         Cleanup,
     }
 
-    public enum zeze
+    /*public enum zeze
     {
         Swap,
         Item,
         Move
-    }
+    }*/
 
     public class BattleManager
     {
@@ -188,7 +188,7 @@ namespace Gooflings
                 case "alive":
                     // menu de choix pokemon 
                     //Menu.DrawTeamMenu(Player.Party);
-                    swapedGoofling = swapedGoofling;// pokemon choisie
+                    PlayerGoofling = swapedGoofling;// pokemon choisie
                     HandleExecuteActions("onlyEnemy");
                     break;
                 case "dead":

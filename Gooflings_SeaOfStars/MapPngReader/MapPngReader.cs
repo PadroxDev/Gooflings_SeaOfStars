@@ -71,7 +71,8 @@ namespace Gooflings
             {
                 foreach (FileInfo file in folder.GetFiles())
                 {
-                    string txtname = "../../../MapTxt/" + file.Name + ".txt";
+                    string fileName = file.Name.Substring(0, file.Name.Length-4);
+                    string txtname = "../../../MapTxt/" + fileName + ".txt";
                     PngToTxt(file.FullName, txtname, UsedColor);
                 }  
             }
