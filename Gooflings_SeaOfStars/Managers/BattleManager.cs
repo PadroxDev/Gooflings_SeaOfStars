@@ -108,6 +108,7 @@ namespace Gooflings
                         HandleExecuteActions("player");
                         break;
                     }
+                // not include
                 case "changeOfGoofling":
                     HandleSwapGoofling("alive", PlayerGoofling);
                     break;
@@ -234,17 +235,29 @@ namespace Gooflings
                 foreach (Goofling goofling in Player.Party.Members)
                 {
                     goofling.GainExperience(1000);
+                    // instant full heal cause no items to heal for now
+                    goofling.ReceiveHealing(10000000);
                 }
                 Console.WriteLine("you win");
                 //ferme le menu de combats
             }
             else if (!PlayerTeamState && EnemyTeamState)
             {
+                foreach (Goofling goofling in Player.Party.Members)
+                {
+                    // instant full heal cause no items to heal for now
+                    goofling.ReceiveHealing(10000000);
+                }
                 Console.WriteLine("you loose");
                 //ferme le menu de combats
             }
             else if (!PlayerTeamState && !EnemyTeamState)
             {
+                foreach (Goofling goofling in Player.Party.Members)
+                {
+                    // instant full heal cause no items to heal for now
+                    goofling.ReceiveHealing(10000000);
+                }
                 Console.WriteLine("tie");
                 //ferme le menu de combats
             }

@@ -6,7 +6,7 @@ namespace Gooflings
     {
         private static int _consoleWidth = 180;
         private static int _consoleHeight = 50;
-        private static int _mlBetweenFrames = 100;
+        private static int _mlBetweenFrames = 50;
 
         public static void Main(string[] args)
         {

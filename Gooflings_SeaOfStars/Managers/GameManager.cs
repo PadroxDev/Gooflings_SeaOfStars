@@ -1,7 +1,6 @@
 ﻿using Gooflings.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Gooflings
 {
@@ -19,10 +18,14 @@ namespace Gooflings
         private InputManager _inputManager;
         private Menu _menu;
         private Player _player;
+        private MapManager _mapManager;
         private MovementPlayer _movement;
 
         public GameState State { get; private set; }
+        public string CurrentMap { get; private set; }
         private int _stateMenu;
+
+        public GameState State { get; set; }
 
         public GameManager()
         {
@@ -30,8 +33,13 @@ namespace Gooflings
             _inputManager = new InputManager();
             _menu = new Menu(_inputManager);
             _player = new Player();
+            _mapManager = new MapManager();
             _movement = new MovementPlayer(_inputManager, _player);
 
+            _nameMap = "Forest";
+
+            State = GameState.Exploring;
+            CurrentMap = "Forest";
 
             State = GameState.TitleMenu;
 
@@ -80,6 +88,8 @@ namespace Gooflings
         private void HandleExploring()
         {
             _movement.DoesMove();
+            _mapManager.Update(_player, CurrentMap);
+            _movement.DoInteraction(_player, "../../../InteractionTxt/" + _nameMap + "-Interaction.txt", _menu, _nameMap, State);
             _player.Draw();
             Renderer.Flush();
         }
