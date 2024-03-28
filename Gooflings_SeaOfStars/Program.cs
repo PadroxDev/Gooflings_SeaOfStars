@@ -14,13 +14,33 @@ namespace Gooflings
             // Initialization 
             Resources resources = new Resources();
             InputManager inputManager = new InputManager();
-            Menu menu = new Menu();
+            Menu menu = new Menu(inputManager);
             Player player = new Player();
             MovementPlayer movement = new MovementPlayer();
 
+                GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
+                grayanData.Level = 20;
+                Goofling grayan = new(grayanData);
+                GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
+                danyData.CurrentHP = 0.8252427f;
+
+                danyData.Level = 32;
+                Goofling dany = new(danyData);
+
+                player.Party.Members.Add(grayan);
+                player.Party.Members.Add(dany);
+
+            menu.DrawTitleMenu();
+            //menu.DrawMainMenu();
+            //menu.DrawTeamMenu(player.Party.Members);
+            //menu.DrawGooflingStatMenu(dany);
+            //menu.DrawBagMenu();
+            //menu.DrawBattleMenu();
+            Thread.Sleep(1000000);
             // Gameloop
             while (true)
             {
+                
                 //    nav.Update();
                 //    int[,] buffer = new int[nav.Columns, nav.Rows];
 
@@ -58,24 +78,11 @@ namespace Gooflings
                 //Console.Clear();
                 //}
 
-                //Menu menu = new Menu();
-                //GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
-                //grayanData.Level = 20;
-                //Goofling grayan = new(grayanData);
-                //GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
-                //danyData.CurrentHP = 0.8252427f;
-
-                //danyData.Level = 32;
-                //Goofling dany = new(danyData);
-
-                //player.Party.Members.Add(grayan);
-                //player.Party.Members.Add(dany);
             }
             //BattleManager battle = new BattleManager(player, enemy);
             //battle.HandleSpawnGooflings(resources);
 
             //Console.WriteLine(dany);
-            menu.displayMenus();
             
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);*/
