@@ -30,13 +30,13 @@ namespace Gooflings
                 player.Party.Members.Add(grayan);
                 player.Party.Members.Add(dany);
 
-            menu.DrawTitleMenu();
+            //menu.DrawTitleMenu();
             //menu.DrawMainMenu();
             //menu.DrawTeamMenu(player.Party.Members);
             //menu.DrawGooflingStatMenu(dany);
             //menu.DrawBagMenu();
-            //menu.DrawBattleMenu();
-            Thread.Sleep(1000000);
+            //
+            //Thread.Sleep(1000000);
             // Gameloop
             while (true)
             {
@@ -45,7 +45,7 @@ namespace Gooflings
                 //    int[,] buffer = new int[nav.Columns, nav.Rows];
 
                 inputManager.Update();
-                movement.DoesMove(player, inputManager);
+                movement.DoInteraction(player, "../../../InteractionTxt/Desert-Interaction.txt", inputManager,  menu);
                 player.Draw();
                 Renderer.Flush();
                 Thread.Sleep(100);
