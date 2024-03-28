@@ -13,7 +13,7 @@ namespace Gooflings {
 
     public class InputManager {
         private Dictionary<ConsoleKey, KeyState> _keyDict;
-
+            keyList = new Dictionary<string, bool>();
         public InputManager() {
             _keyDict = new();
 
@@ -35,7 +35,7 @@ namespace Gooflings {
                     break;
             }
         }
-
+        }
         private void UpdateRemainingKey(ConsoleKey key) {
             switch (_keyDict[key]) {
                 case KeyState.Pressed:
@@ -53,19 +53,21 @@ namespace Gooflings {
         public void Update() {
             List<ConsoleKey> keysToHandle = _keyDict.Where(p => p.Value != KeyState.Up)
                 .ToDictionary(p => p.Key, p => p.Value).Keys.ToList();
-
+                // comment faire pour que ce s'active que quand la touche est lacher 
             while (Console.KeyAvailable) {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                keyList = keyList.ToDictionary(p => p.Key, p => false);
+                keyList = keyList.ToDictionary(p => p.Key, p => false);
 
                 if (keysToHandle.Contains(keyInfo.Key))
                     keysToHandle.Remove(keyInfo.Key);
 
                 UpdatePressedKey(keyInfo.Key);
-            }
-
             foreach (var key in keysToHandle) {
                 UpdateRemainingKey(key);
             }
+            }
+
         }
 
         public bool GetKeyDown(ConsoleKey key) => _keyDict[key] == KeyState.Pressed;

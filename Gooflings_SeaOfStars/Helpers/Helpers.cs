@@ -111,5 +111,14 @@ namespace Gooflings
             int randomByte = Rand.Next(256);
             return randomByte < threshold;
         }
+        
+
+        public static void SkipLines(int lines)
+        {
+            for (int i = 0; i < lines; i++)
+            {
+                Console.WriteLine();
+            }
+        }
     }
 }

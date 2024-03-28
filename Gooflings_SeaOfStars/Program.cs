@@ -74,6 +74,8 @@ namespace Gooflings
             //battle.HandleSpawnGooflings(resources);
 
             //Console.WriteLine(dany);
+            menu.displayMenus();
+            
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);*/
         }
