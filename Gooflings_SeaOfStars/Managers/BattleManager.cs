@@ -1,6 +1,7 @@
 ﻿using Gooflings.Moves;
 using System;
 using System.Collections.Generic;
+using System.Resources;
 using System.Xml;
 
 namespace Gooflings
@@ -25,13 +26,12 @@ namespace Gooflings
     public class BattleManager
     {
 
-        Goofling PlayerGoofling;
-        Goofling EnemyGoofling;
-        Move PlayerMove;
-        Move EnemyMove;
-
-        bool PlayerTeamState;
-        bool EnemyTeamState;
+        public Goofling PlayerGoofling;
+        public Goofling EnemyGoofling;
+        public Move PlayerMove;
+        public Move EnemyMove;
+        public bool PlayerTeamState;
+        public bool EnemyTeamState;
 
         public BattleState State { get; private set; }
 
@@ -68,19 +68,19 @@ namespace Gooflings
             }
         }
 
-        void HandleSpawnGooflings(Goofling goofling)
+        public void HandleSpawnGooflings(Resources resources)
         {
             PlayerGoofling = Player.Party.Members[0];
-            EnemyGoofling = goofling;
-            HandleWaitForAction();
+            EnemyGoofling = Contender.Party.Members[0];
+            HandleWaitForAction(resources.GetMove(MoveType.Croustifesses), resources.GetMove(MoveType.Croustifesses));
         }
 
-        void HandleWaitForAction()
+        void HandleWaitForAction(Move Playermove, Move Enemymove)
         {
-            // choose with battle menu
-            // playermove = what player choose
-            // if attack : PlayerMove = attack
-            // HandleEvaluateActionOrder(playermove)
+            Thread.Sleep(2000);
+            PlayerMove = Playermove;
+            EnemyMove = Enemymove;
+            HandleEvaluateActionOrder("attack");
         }
 
         void HandleEvaluateActionOrder(string Playermove)
@@ -90,6 +90,7 @@ namespace Gooflings
                 case "attack":
                     if (PlayerGoofling.Speed > EnemyGoofling.Speed)
                     {
+                        Console.WriteLine("player turn");
                         HandleExecuteActions("player");
                         break;
                     }
@@ -103,10 +104,12 @@ namespace Gooflings
                         HandleExecuteActions("player");
                         break;
                     }
-                case "chnageOfGoofling":
+                case "changeOfGoofling":
                     HandleSwapGoofling("alive", PlayerGoofling);
                     break;
                 case "other":
+                    //Menu.DrawBagMenu();
+                    //use items
                     HandleExecuteActions("enemy");
                     break;
             } 
@@ -117,35 +120,49 @@ namespace Gooflings
             switch(FirstPlayer)
             {
                 case "player":
-                    // player move
-                    
-                    EnemyGoofling.TakeDamage(Helpers.CalculateDamageToDeal(PlayerGoofling, EnemyGoofling, PlayerMove));
+                    if(PlayerGoofling.Mana > 0)
+                    {
+                        // player move
+                        EnemyGoofling.TakeDamage(Helpers.CalculateDamageToDeal(PlayerGoofling, EnemyGoofling, PlayerMove));
+                        PlayerGoofling.Mana -= PlayerMove.ManaCost;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not enough mana");
+                    }
                     // enemy move
                     PlayerGoofling.TakeDamage(Helpers.CalculateDamageToDeal(EnemyGoofling, PlayerGoofling, EnemyMove));
+                    EnemyGoofling.Mana -= EnemyMove.ManaCost;
                     break;
                 case "enemy":
                     // enemy move
                     PlayerGoofling.TakeDamage(Helpers.CalculateDamageToDeal(EnemyGoofling, PlayerGoofling, EnemyMove));
+                    EnemyGoofling.Mana -= EnemyMove.ManaCost;
                     // player move
                     EnemyGoofling.TakeDamage(Helpers.CalculateDamageToDeal(PlayerGoofling, EnemyGoofling, PlayerMove));
+                    PlayerGoofling.Mana -= PlayerMove.ManaCost;
                     break;
                 case "onlyEnemy":
                     // enemy move
                     PlayerGoofling.TakeDamage(Helpers.CalculateDamageToDeal(EnemyGoofling, PlayerGoofling, EnemyMove));
+                    EnemyGoofling.Mana -= EnemyMove.ManaCost;
                     break;
             }
             if(PlayerGoofling.HP == 0)
             {
+                Console.WriteLine("player goofling dead");
                 HandleSwapGoofling("dead", PlayerGoofling);
             }
-            if(EnemyGoofling.HP == 0)
+            else if(EnemyGoofling.HP == 0)
             {
-                // gain xp pour le pokemon
+                Console.WriteLine("ennemy goofling dead");
+                PlayerGoofling.GainExperience(1000);
                 HandleSwapGoofling("dead", EnemyGoofling);
             }
             else
             {
-                HandleWaitForAction();
+                Console.WriteLine("next turn");
+                HandleWaitForAction(PlayerMove, EnemyMove);
             }
         }
 
@@ -154,7 +171,9 @@ namespace Gooflings
             switch (GooflingState)
             {
                 case "alive":
-                    // menu de choix pokemon
+                    // menu de choix pokemon 
+                    //Menu.DrawTeamMenu(Player.Party);
+
                     swapedGoofling = swapedGoofling;// pokemon choisie
                     HandleExecuteActions("onlyEnemy");
                     break;
@@ -166,6 +185,7 @@ namespace Gooflings
                         if (goofling.HP != 0)
                         {
                             PlayerTeamState = true;
+                            PlayerGoofling = Player.Party.Members[1];
                         }
                     }
                     foreach (Goofling goofling in Contender.Party.Members)
@@ -173,13 +193,15 @@ namespace Gooflings
                         if (goofling.HP != 0)
                         {
                             EnemyTeamState = true;
+                            EnemyGoofling = Contender.Party.Members[1];
                         }
                     }
                     if (PlayerTeamState && EnemyTeamState)
                     {
                         // menu de choix pokemon
-                        swapedGoofling = swapedGoofling;// pokemon choisie
-                        HandleWaitForAction();
+                        EnemyGoofling.Mana += 20;
+                        PlayerGoofling.Mana += 20;
+                        HandleWaitForAction(PlayerMove ,EnemyMove);
                         break;
                     }
                     else
@@ -195,6 +217,10 @@ namespace Gooflings
         {
             if (PlayerTeamState && !EnemyTeamState)
             {
+                foreach (Goofling goofling in Player.Party.Members)
+                {
+                    goofling.GainExperience(1000);
+                }
                 Console.WriteLine("you win");
                 //ferme le menu de combats
             }

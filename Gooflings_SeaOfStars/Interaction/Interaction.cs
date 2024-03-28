@@ -32,7 +32,13 @@ namespace Gooflings
                     return "To-House";
 
                 case '4':
-                    return "To-tippie";
+                    return "To-Tippie";
+
+                case '5':
+                    return "Spawn_Goofling";
+
+                case '/':
+                    return "Not-Walkable";
 
                 case '.':
                     return "noting";

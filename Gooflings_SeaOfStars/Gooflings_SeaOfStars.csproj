@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="img\" />
+    <Folder Include="InteractionTxt - Copier\" />
     <Folder Include="MapTxt\" />
   </ItemGroup>
 

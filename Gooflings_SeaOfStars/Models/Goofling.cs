@@ -73,12 +73,13 @@ namespace Gooflings
         public int MaxHP { get; private set; }
         public int HP { get; private set; }
         public int MaxMana { get; private set; }
-        public int Mana { get; private set; }
+        public int Mana { get; set; }
         public int Attack { get; private set; }
         public int Defense { get; private set; }
         public int SpAtk { get; private set; }
         public int SpDef { get; private set; }
         public int Speed { get; private set; }
+        public MoveType[] Moves { get; private set; }
 
         #region Events
 

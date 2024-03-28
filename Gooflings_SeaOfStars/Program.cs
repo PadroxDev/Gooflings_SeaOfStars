@@ -15,12 +15,11 @@ namespace Gooflings
             // heigh = 50
 
             Console.Title = "Gooflings";
-            Dictionary<(int, int, int, int), char> UsedColor = new Dictionary<(int, int, int, int), char>();
-            MovementPlayer movement = new MovementPlayer();
-            Player player = new Player();
-            InputManager input = new InputManager();
-            MapPngReader img = new MapPngReader(UsedColor);
-            MapTxtReader text = new MapTxtReader(UsedColor);
+            //Dictionary<(int, int, int, int), char> UsedColor = new Dictionary<(int, int, int, int), char>();
+            //MovementPlayer movement = new MovementPlayer();
+            //InputManager input = new InputManager();
+            //MapPngReader img = new MapPngReader(UsedColor);
+            //MapTxtReader text = new MapTxtReader(UsedColor);
 
             /*
             while (true)
@@ -64,23 +63,30 @@ namespace Gooflings
             //    Thread.Sleep(1000);
             //    Console.Clear();
 
-            //}
+            //}*/
 
 
             Resources resources = new Resources();
             Menu menu = new Menu();
+            Player player = new Player();
+
+            Trainer enemy = new Trainer(resources.GetTrainerData(TrainerType.Alice));
+
             GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
             grayanData.Level = 20;
             Goofling grayan = new(grayanData);
+
             GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
             danyData.CurrentHP = 0.8252427f;
-
             danyData.Level = 32;
             Goofling dany = new(danyData);
-            Move move = resources.GetMove(MoveType.Croustifesses);
-            move.OnAction(grayan, dany);*/
-            //player.Party.Members.Add(grayan);
-            //player.Party.Members.Add(dany);
+
+            player.Party.Members.Add(grayan);
+            player.Party.Members.Add(dany);
+
+            BattleManager battle = new BattleManager(player, enemy);
+            battle.HandleSpawnGooflings(resources);
+
             //Console.WriteLine(dany);
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);
