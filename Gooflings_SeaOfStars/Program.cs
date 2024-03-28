@@ -6,28 +6,19 @@ namespace Gooflings
     {
         private static int _consoleWidth = 180;
         private static int _consoleHeight = 50;
+        private static int _mlBetweenFrames = 100;
 
         public static void Main(string[] args)
         {
+            // Initialization
             Renderer.Initialize(_consoleWidth, _consoleHeight);
-
-            // Initialization 
-            Resources resources = new Resources();
-            InputManager inputManager = new InputManager();
-            Player player = new Player();
-            MovementPlayer movement = new MovementPlayer();
+            GameManager gameManager = new GameManager();
 
             // Gameloop
             while (true)
             {
-                //    nav.Update();
-                //    int[,] buffer = new int[nav.Columns, nav.Rows];
-
-                inputManager.Update();
-                movement.DoesMove(player, inputManager);
-                player.Draw();
-                Renderer.Flush();
-                Thread.Sleep(100);
+                gameManager.Update();
+                Thread.Sleep(_mlBetweenFrames);
 
                 //for (int x = 0; x < nav.Columns; x++) {
                 //    for (int y = 0; y < nav.Rows; y++) {

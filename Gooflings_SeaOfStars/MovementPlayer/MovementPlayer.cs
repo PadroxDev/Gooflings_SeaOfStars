@@ -9,26 +9,29 @@ namespace Gooflings
     public class MovementPlayer
     {
         Interaction interaction;
+        InputManager _inputManager;
+        Player _plr;
 
-        public MovementPlayer()
+        public MovementPlayer(InputManager input, Player plr)
         {
+            _plr = plr;
+            _inputManager = input;
             interaction = new Interaction();
-
         }
 
-        public void DoesMove(Player player, InputManager input)
+        public void DoesMove()
         {
-            if(input.GetKey(ConsoleKey.D) || input.GetKey(ConsoleKey.RightArrow)) {
-                GoRight(player);
+            if(_inputManager.GetKey(ConsoleKey.D) || _inputManager.GetKey(ConsoleKey.RightArrow)) {
+                GoRight();
             }
-            if (input.GetKey(ConsoleKey.Q) || input.GetKey(ConsoleKey.LeftArrow)) {
-                GoLeft(player);
+            if (_inputManager.GetKey(ConsoleKey.Q) || _inputManager.GetKey(ConsoleKey.LeftArrow)) {
+                GoLeft();
             }
-            if (input.GetKey(ConsoleKey.Z) || input.GetKey(ConsoleKey.UpArrow)) {
-                GoUp(player);
+            if (_inputManager.GetKey(ConsoleKey.Z) || _inputManager.GetKey(ConsoleKey.UpArrow)) {
+                GoUp();
             }
-            if (input.GetKey(ConsoleKey.S) || input.GetKey(ConsoleKey.DownArrow)) {
-                GoDown(player);
+            if (_inputManager.GetKey(ConsoleKey.S) || _inputManager.GetKey(ConsoleKey.DownArrow)) {
+                GoDown();
             }
         }
 
@@ -55,38 +58,38 @@ namespace Gooflings
             }
         }
 
-        private void GoUp(Player player)
+        private void GoUp()
         {
-            if (player.posY > 0)
+            if (_plr.posY > 0)
             {
-                player.posY--;
+                _plr.posY--;
             }
             
         }
 
-        private void GoDown(Player player)
+        private void GoDown()
         {
-            if(player.posY < 10)
+            if(_plr.posY < 10)
             {
-                player.posY++;
+                _plr.posY++;
             }
             
         }
 
-        private void GoLeft(Player player)
+        private void GoLeft()
         {
-            if (player.posX > 0)
+            if (_plr.posX > 0)
             {
-                player.posX--;
+                _plr.posX--;
             }
             
         }
 
-        private void GoRight(Player player)
+        private void GoRight()
         {
-            if (player.posX < 10)
+            if (_plr.posX < 10)
             {
-                player.posX++;
+                _plr.posX++;
             }
             
         }
