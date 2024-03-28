@@ -48,23 +48,12 @@ namespace Gooflings
                 //Console.Clear();
                 //}
 
-                //Menu menu = new Menu();
-                //GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
-                //grayanData.Level = 20;
-                //Goofling grayan = new(grayanData);
-                //GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
-                //danyData.CurrentHP = 0.8252427f;
-
-                //danyData.Level = 32;
-                //Goofling dany = new(danyData);
-
-                //player.Party.Members.Add(grayan);
-                //player.Party.Members.Add(dany);
             }
             //BattleManager battle = new BattleManager(player, enemy);
             //battle.HandleSpawnGooflings(resources);
 
             //Console.WriteLine(dany);
+            
             //Move move = resources.GetMove(MoveType.Croustifesses);
             //move.OnAction(grayan, dany);*/
         }
