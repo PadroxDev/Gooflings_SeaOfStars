@@ -17,6 +17,7 @@ namespace Gooflings
             // Gameloop
             while (true)
             {
+
                 gameManager.Update();
                 Thread.Sleep(_mlBetweenFrames);
 

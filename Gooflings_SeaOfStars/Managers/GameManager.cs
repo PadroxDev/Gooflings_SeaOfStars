@@ -22,16 +22,18 @@ namespace Gooflings
         private MovementPlayer _movement;
 
         public GameState State { get; private set; }
+        private int _stateMenu;
 
         public GameManager()
         {
             _resources = new Resources();
             _inputManager = new InputManager();
-            _menu = new Menu();
+            _menu = new Menu(_inputManager);
             _player = new Player();
             _movement = new MovementPlayer(_inputManager, _player);
 
-            State = GameState.Exploring;
+
+            State = GameState.TitleMenu;
 
             //GooflingData rayanData = _resources.GetGooflingData(GooflingType.Radany);
             //rayanData.Level = 12;
@@ -40,6 +42,7 @@ namespace Gooflings
             //_player.Party.Members.Add(rayan);
 
             Serializer.Load(_player);
+            _menu.DrawBattleMenu(_player.Party.Members,);
         }
 
         public void Update()
@@ -70,7 +73,8 @@ namespace Gooflings
 
         private void HandleTitleMenu()
         {
-            // menu.Update() // Handle movement with InputManager Redraw
+            _stateMenu = 0;
+            _menu.Update(_stateMenu);
         }
 
         private void HandleExploring()
@@ -82,12 +86,14 @@ namespace Gooflings
 
         private void HandleMainMenu()
         {
-
+            _stateMenu = 1;
+            _menu.Update(_stateMenu);
         }
 
         private void HandleFighting()
         {
-
+            _stateMenu = 6;
+            _menu.Update(_stateMenu);
         }
     }
 }
