@@ -21,10 +21,8 @@ namespace Gooflings
         private MapManager _mapManager;
         private MovementPlayer _movement;
 
-        public GameState State { get; private set; }
+        public GameState State;
         public string CurrentMap { get; private set; }
-
-        public GameState State { get; set; }
 
         public GameManager()
         {
@@ -34,8 +32,6 @@ namespace Gooflings
             _player = new Player();
             _mapManager = new MapManager();
             _movement = new MovementPlayer(_inputManager, _player);
-
-            _nameMap = "Forest";
 
             State = GameState.Exploring;
             CurrentMap = "Forest";
@@ -82,9 +78,8 @@ namespace Gooflings
 
         private void HandleExploring()
         {
-            _movement.DoesMove();
             _mapManager.Update(_player, CurrentMap);
-            _movement.DoInteraction(_player, "../../../InteractionTxt/" + _nameMap + "-Interaction.txt", _menu, _nameMap, State);
+            _movement.DoInteraction(_player, "../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap, ref State);
             _player.Draw();
             Renderer.Flush();
         }
@@ -96,7 +91,7 @@ namespace Gooflings
 
         private void HandleFighting()
         {
-
+            Console.Clear();
         }
     }
 }

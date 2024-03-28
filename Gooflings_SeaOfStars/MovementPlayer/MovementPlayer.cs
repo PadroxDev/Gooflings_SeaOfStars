@@ -38,7 +38,7 @@ namespace Gooflings
             }
         }
 
-        public void DoInteraction(Player player, string filename, Menu menu, string map, GameState gamestate) 
+        public void DoInteraction(Player player, string filename, Menu menu, string map, ref GameState gamestate) 
         {
             string whathhapen = interaction.CheckInteraction(player.posX, player.posY, filename); 
 
