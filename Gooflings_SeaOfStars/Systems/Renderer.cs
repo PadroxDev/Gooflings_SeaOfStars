@@ -7,6 +7,7 @@ using System.Linq;
 namespace Gooflings
 {
     public struct BufferSlot
+
     {
         public char Character;
         public Color FgColor;
