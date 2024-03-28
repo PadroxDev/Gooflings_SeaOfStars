@@ -8,8 +8,10 @@ namespace Gooflings
 {
     public class Player
     {
-        public float posX;
-        public float posY;
+        public int posX;
+        public int posY;
+
+        private char[,] _pattern;
 
         public string Name;
 
@@ -22,7 +24,24 @@ namespace Gooflings
             posX = 0;
             posY = 0;
             Party = new Party();
+
+            _pattern = new char[3, 3]
+            {
+                {'_', 'O', '_',},
+                {' ', '|', ' ',},
+                {'/', ' ', '\\'}
+            };
         }
 
+        public void Draw()
+        {
+            for (int i = 0; i < _pattern.GetLength(0); i++)
+            {
+                for (int j = 0; j < _pattern.GetLength(1); j++)
+                {
+                    Renderer.RenderBuffer[posX + j, posY + i].Character = _pattern[i, j];
+                }
+            }
+        }
     }
 }

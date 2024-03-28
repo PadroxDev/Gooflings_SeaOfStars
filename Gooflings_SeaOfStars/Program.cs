@@ -6,7 +6,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Gooflings
 {
-
     public class Program
     {
         public struct BufferSlot
@@ -110,88 +109,77 @@ namespace Gooflings
                 Console.WriteLine();
             }
         }
+        private static int _consoleWidth = 180;
+        private static int _consoleHeight = 50;
+
         public static void Main(string[] args)
         {
+            Renderer.Initialize(_consoleWidth, _consoleHeight);
 
-            Console.Title = "Gooflings";
+            //if (Console.WindowLeft + Console.WindowWidth < width && Console.WindowTop + Console.WindowHeight < height)
+            //    System.Console.SetBufferSize(width, height);
 
-            Renderer.Initialize(150, 50);
+            // Initialization 
+            Resources resources = new Resources();
+            InputManager inputManager = new InputManager();
+            Player player = new Player();
+            MovementPlayer movement = new MovementPlayer();
+            //NavMenu nav = new(inputManager, 3, 4);
 
-            while(true)
-            {
-                Renderer.Flush();
-                Thread.Sleep(2000);
-                Console.Clear();
-            }
-            
-            //Dictionary<(int, int, int, int), char> UsedColor = new Dictionary<(int, int, int, int), char>();
-            //MovementPlayer movement = new MovementPlayer();
-            //InputManager input = new InputManager();
-            //MapPngReader img = new MapPngReader(UsedColor);
-            //MapTxtReader text = new MapTxtReader(UsedColor);
 
-            /*
+            // Gameloop
             while (true)
             {
-                bool pressed = Console.KeyAvailable;
-                movement.DoesMove(pressed, player, input);
+                //    nav.Update();
 
-                for (int i = 0; i < Console.WindowHeight; i++)
-                {
-                    for (int j = 0;j < Console.WindowWidth; j++)
-                    {
-                        if (i == player.posY && j == player.posX)
-                        {
-                            Console.Write("0");
-                        }
-                        else
-                        {
-                            Console.Write(".");
-                        }
-            //while (true)
-            //{
-            //    bool pressed = Console.KeyAvailable;
-            //    movement.DoesMove(pressed, player, input);
+                //    int[,] buffer = new int[nav.Columns, nav.Rows];
 
-            //    for (int i = 0; i < 10; i++)
-            //    {
-            //        for (int j = 0;j < 10; j++)
-            //        {
-            //            if (i == player.posY && j == player.posX)
-            //            {
-            //                Console.Write("0");
-            //            }
-            //            else
-            //            {
-            //                Console.Write(".");
-            //            }                     
-            //        } 
-            //        Console.WriteLine();
-            //    }
+                inputManager.Update();
+                movement.DoesMove(player, inputManager);
+                player.Draw();
+                Renderer.Flush();
+                Thread.Sleep(250);
 
-            //    Thread.Sleep(1000);
-            //    Console.Clear();
+                //for (int x = 0; x < nav.Columns; x++) {
+                //    for (int y = 0; y < nav.Rows; y++) {
+                //        int v = x * nav.Rows + y;
+                //        buffer[x, y] = nav.SelectedIndex == v ? 'S' : v;
+                //    }
+                //}
 
-            //}
+                //for (int x = 0;  x < nav.Rows;  x++) {
+                //    for (int y = 0; y < nav.Columns; y++) {
+                //        Console.Write(buffer[y, x] == 83 ? "P ," : buffer[y, x] + " ,");
+                //    }
+                //    Console.WriteLine();
+                //}
+                //for (int i = 0; i < 10; i++) {
+                //    for (int j = 0; j < 10; j++) {
+                //        if (i == player.posY && j == player.posX) {
+                //            Console.Write("0");
+                //        } else {
+                //            Console.Write(".");
+                //        }
+                //    }
+                //    Console.WriteLine();
+                //}
 
-            
-            Resources resources = new Resources();
-            Menu menu = new Menu();
-            Player player = new Player();
+                //Thread.Sleep(250);
+                //Console.Clear();
+                //}
 
-            Trainer enemy = new Trainer(resources.GetTrainerData(TrainerType.Alice));
+                //Menu menu = new Menu();
+                //GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
+                //grayanData.Level = 20;
+                //Goofling grayan = new(grayanData);
+                //GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
+                //danyData.CurrentHP = 0.8252427f;
 
-            GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
-            grayanData.Level = 20;
-            Goofling grayan = new(grayanData);
+                //danyData.Level = 32;
+                //Goofling dany = new(danyData);
 
-            GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
-            danyData.CurrentHP = 0.8252427f;
-            danyData.Level = 32;
-            Goofling dany = new(danyData);
-
-            player.Party.Members.Add(grayan);
-            player.Party.Members.Add(dany);
+                //player.Party.Members.Add(grayan);
+                //player.Party.Members.Add(dany);
 
             BattleManager battle = new BattleManager(player, enemy);
             battle.HandleSpawnGooflings(resources);

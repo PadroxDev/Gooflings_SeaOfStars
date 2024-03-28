@@ -16,26 +16,19 @@ namespace Gooflings
 
         }
 
-        public void DoesMove(bool pressed, Player player, InputManager input)
+        public void DoesMove(Player player, InputManager input)
         {
-            string key = input.SetKeyState(pressed);
-            if (key != "no")
-            {
-                switch (key)
-                {
-                    case "Z":
-                        GoUp(player);
-                        break;
-                    case "S":
-                        GoDown(player);
-                        break;
-                    case "Q":
-                        GoLeft(player);
-                        break;
-                    case "D":
-                        GoRight(player);
-                        break;
-                }
+            if(input.GetKey(ConsoleKey.D) || input.GetKey(ConsoleKey.RightArrow)) {
+                GoRight(player);
+            }
+            if (input.GetKey(ConsoleKey.Q) || input.GetKey(ConsoleKey.LeftArrow)) {
+                GoLeft(player);
+            }
+            if (input.GetKey(ConsoleKey.Z) || input.GetKey(ConsoleKey.UpArrow)) {
+                GoUp(player);
+            }
+            if (input.GetKey(ConsoleKey.S) || input.GetKey(ConsoleKey.DownArrow)) {
+                GoDown(player);
             }
         }
 
