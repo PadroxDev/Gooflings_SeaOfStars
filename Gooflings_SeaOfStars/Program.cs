@@ -14,6 +14,7 @@ namespace Gooflings
             // Initialization 
             Resources resources = new Resources();
             InputManager inputManager = new InputManager();
+            Menu menu = new Menu();
             Player player = new Player();
             MovementPlayer movement = new MovementPlayer();
 
