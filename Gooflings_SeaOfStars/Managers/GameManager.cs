@@ -21,15 +21,19 @@ namespace Gooflings
         private Player _player;
         private MovementPlayer _movement;
 
-        public GameState State { get; private set; }
+        public string _nameMap;
+
+        public GameState State { get; set; }
 
         public GameManager()
         {
             _resources = new Resources();
             _inputManager = new InputManager();
-            _menu = new Menu();
+            _menu = new Menu(_inputManager);
             _player = new Player();
             _movement = new MovementPlayer(_inputManager, _player);
+
+            _nameMap = "Forest";
 
             State = GameState.Exploring;
 
@@ -75,7 +79,7 @@ namespace Gooflings
 
         private void HandleExploring()
         {
-            _movement.DoesMove();
+            _movement.DoInteraction(_player, "../../../InteractionTxt/" + _nameMap + "-Interaction.txt", _menu, _nameMap, State);
             _player.Draw();
             Renderer.Flush();
         }
