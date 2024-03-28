@@ -6,49 +6,19 @@ namespace Gooflings
     {
         private static int _consoleWidth = 180;
         private static int _consoleHeight = 50;
+        private static int _mlBetweenFrames = 100;
 
         public static void Main(string[] args)
         {
+            // Initialization
             Renderer.Initialize(_consoleWidth, _consoleHeight);
+            GameManager gameManager = new GameManager();
 
-            // Initialization 
-            Resources resources = new Resources();
-            InputManager inputManager = new InputManager();
-            Menu menu = new Menu(inputManager);
-            Player player = new Player();
-            MovementPlayer movement = new MovementPlayer();
-
-                GooflingData grayanData = resources.GetGooflingData(GooflingType.Grayan);
-                grayanData.Level = 20;
-                Goofling grayan = new(grayanData);
-                GooflingData danyData = resources.GetGooflingData(GooflingType.Radany);
-                danyData.CurrentHP = 0.8252427f;
-
-                danyData.Level = 32;
-                Goofling dany = new(danyData);
-
-                player.Party.Members.Add(grayan);
-                player.Party.Members.Add(dany);
-
-            //menu.DrawTitleMenu();
-            //menu.DrawMainMenu();
-            //menu.DrawTeamMenu(player.Party.Members);
-            //menu.DrawGooflingStatMenu(dany);
-            //menu.DrawBagMenu();
-            //
-            //Thread.Sleep(1000000);
             // Gameloop
             while (true)
             {
-                
-                //    nav.Update();
-                //    int[,] buffer = new int[nav.Columns, nav.Rows];
-
-                inputManager.Update();
-                movement.DoInteraction(player, "../../../InteractionTxt/Desert-Interaction.txt", inputManager,  menu);
-                player.Draw();
-                Renderer.Flush();
-                Thread.Sleep(100);
+                gameManager.Update();
+                Thread.Sleep(_mlBetweenFrames);
 
                 //for (int x = 0; x < nav.Columns; x++) {
                 //    for (int y = 0; y < nav.Rows; y++) {

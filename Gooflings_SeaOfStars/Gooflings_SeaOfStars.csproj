@@ -15,6 +15,7 @@
   <ItemGroup>
     <Compile Include="Managers\BattleManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Managers\GameManager.cs" />
   </ItemGroup>
 
   <ItemGroup>

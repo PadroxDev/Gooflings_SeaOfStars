@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json.Serialization;
 using Gooflings.Moves;
 
 namespace Gooflings
@@ -15,12 +16,12 @@ namespace Gooflings
 
     public struct GooflingData
     {
-        public GooflingType GooflingType;
+        [JsonInclude] public GooflingType GooflingType;
         public string Name;
         public Types PrimaryType;
         public Types SecondaryType;
-        public int Level;
-        public int Exp;
+        [JsonInclude] public int Level;
+        [JsonInclude] public int Exp;
         public ExpRequirement ExpRequirement;
         public int HP;
         public float CurrentHP;
