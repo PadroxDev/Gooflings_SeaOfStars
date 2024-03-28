@@ -1,7 +1,6 @@
 ﻿using Gooflings.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Gooflings
 {
@@ -19,19 +18,23 @@ namespace Gooflings
         private InputManager _inputManager;
         private Menu _menu;
         private Player _player;
+        private MapManager _mapManager;
         private MovementPlayer _movement;
 
         public GameState State { get; private set; }
+        public string CurrentMap { get; private set; }
 
         public GameManager()
         {
             _resources = new Resources();
             _inputManager = new InputManager();
-            _menu = new Menu();
+            _menu = new Menu(_inputManager);
             _player = new Player();
+            _mapManager = new MapManager();
             _movement = new MovementPlayer(_inputManager, _player);
 
             State = GameState.Exploring;
+            CurrentMap = "Forest";
 
             //GooflingData rayanData = _resources.GetGooflingData(GooflingType.Radany);
             //rayanData.Level = 12;
@@ -76,6 +79,7 @@ namespace Gooflings
         private void HandleExploring()
         {
             _movement.DoesMove();
+            _mapManager.Update(_player, CurrentMap);
             _player.Draw();
             Renderer.Flush();
         }

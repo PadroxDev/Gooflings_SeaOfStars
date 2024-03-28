@@ -14,11 +14,13 @@ namespace Gooflings
         
         int letterUsed;
         string Alphabet;
+        public Dictionary<(int, int, int, int), char> UsedColor { get; private set; }
 
-        public MapPngReader(Dictionary<(int, int, int, int), char> UsedColor)
+        public MapPngReader()
         {         
             letterUsed = 0; 
             Alphabet = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
+            UsedColor = new();
 
             DirectoryInfo txtfolder = new DirectoryInfo("../../../MapTxt");
             if (txtfolder.Exists)
@@ -33,7 +35,7 @@ namespace Gooflings
 
         }  
         
-        public void PngToTxt(string Pngfile, string txtPath, Dictionary<(int, int, int, int), char> UsedColor)
+        public void PngToTxt(string Pngfile, string txtPath)
         {
             Bitmap img = new Bitmap(Pngfile);
             StreamWriter txt = File.CreateText(txtPath);
@@ -73,7 +75,7 @@ namespace Gooflings
                 {
                     string fileName = file.Name.Substring(0, file.Name.Length-4);
                     string txtname = "../../../MapTxt/" + fileName + ".txt";
-                    PngToTxt(file.FullName, txtname, UsedColor);
+                    PngToTxt(file.FullName, txtname);
                 }  
             }
         }

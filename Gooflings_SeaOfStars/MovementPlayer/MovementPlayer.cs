@@ -8,6 +8,8 @@ namespace Gooflings
 {
     public class MovementPlayer
     {
+        public const int MOVE_STEP = 3;
+
         Interaction interaction;
         InputManager _inputManager;
         Player _plr;
@@ -60,38 +62,38 @@ namespace Gooflings
 
         private void GoUp()
         {
-            if (_plr.posY > 0)
+            for (int i = 0; i < MOVE_STEP; i++)
             {
+                if (_plr.posY <= 0) return;
                 _plr.posY--;
             }
-            
         }
 
         private void GoDown()
         {
-            if(_plr.posY < 10)
+            for (int i = 0; i < MOVE_STEP; i++)
             {
+                if (_plr.posY >= 150) return;
                 _plr.posY++;
             }
-            
         }
 
         private void GoLeft()
         {
-            if (_plr.posX > 0)
+            for (int i = 0; i < MOVE_STEP; i++)
             {
+                if (_plr.posX <= 0) return;
                 _plr.posX--;
             }
-            
         }
 
         private void GoRight()
         {
-            if (_plr.posX < 10)
+            for (int i = 0; i < MOVE_STEP; i++)
             {
+                if (_plr.posX >= 250) return;
                 _plr.posX++;
             }
-            
         }
     }
 }
