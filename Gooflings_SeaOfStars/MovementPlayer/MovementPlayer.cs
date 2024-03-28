@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,25 +38,43 @@ namespace Gooflings
             }
         }
 
-        public void DoInteraction(int posX, int posY, string filename) 
+        public void DoInteraction(Player player, string filename, Menu menu, string map, GameState gamestate) 
         {
-            string whathhapen = interaction.CheckInteraction(posX, posY, filename); 
+            string whathhapen = interaction.CheckInteraction(player.posX, player.posY, filename); 
 
             switch (whathhapen)
             {
                 case "To-Desert":
-                    // switch buffer to desert map
+                    map = "Desert";
+                    DoesMove();
                     break ;
 
                 case "To-Forest":
-                    // switch buffer to forest map
+                    map = "Forest";
+                    DoesMove();
+                    break;
+                
+                // Not include for now
+                 case "To-House" or "To-tippie":
+                    // switch buffer to shop
+                    DoesMove();
+                    break;
+                
+
+                case "Spawn_Goofling":
+                    int i = Helpers.Rand.Next(0, 5);
+                    if(i == 4)
+                    {
+                        gamestate = GameState.Fighting;
+                    }
+                    DoesMove();
                     break;
 
-                case "To-House" or "To-tippie":
-                    // switch buffer to shop
+                case "Not-Walkable":
                     break;
 
                 case "noting":
+                    DoesMove();
                     break;
             }
         }

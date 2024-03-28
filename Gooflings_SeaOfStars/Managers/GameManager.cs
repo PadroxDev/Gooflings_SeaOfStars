@@ -24,6 +24,8 @@ namespace Gooflings
         public GameState State { get; private set; }
         public string CurrentMap { get; private set; }
 
+        public GameState State { get; set; }
+
         public GameManager()
         {
             _resources = new Resources();
@@ -32,6 +34,8 @@ namespace Gooflings
             _player = new Player();
             _mapManager = new MapManager();
             _movement = new MovementPlayer(_inputManager, _player);
+
+            _nameMap = "Forest";
 
             State = GameState.Exploring;
             CurrentMap = "Forest";
@@ -80,6 +84,7 @@ namespace Gooflings
         {
             _movement.DoesMove();
             _mapManager.Update(_player, CurrentMap);
+            _movement.DoInteraction(_player, "../../../InteractionTxt/" + _nameMap + "-Interaction.txt", _menu, _nameMap, State);
             _player.Draw();
             Renderer.Flush();
         }
