@@ -91,7 +91,7 @@ namespace Gooflings
         private void HandleExploring()
         {
             _mapManager.Update(_player, CurrentMap);
-            _movement.DoInteraction("../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap, State);
+            CurrentMap = _movement.DoInteraction("../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap, State);
             //_movement.DoesMove();
             _player.Draw();
             Renderer.Flush();
@@ -115,6 +115,7 @@ namespace Gooflings
             }
             _stateMenu = 6;
             _menu.Update(_stateMenu, _player, _battleManager, ref State);
+            */
         }
     }
 }

@@ -60,14 +60,14 @@ namespace Gooflings
                     }
                     return false;
                 case "LEFT":
-                    whathhapen = interaction.CheckInteraction(_plr.posX - 4, _plr.posY, Filename);
+                    whathhapen = interaction.CheckInteraction(_plr.posX - 2, _plr.posY, Filename);
                     if (whathhapen != "Not-Walkable")
                     {
                         return true;
                     }
                     return false;
                 case "RIGHT":
-                    whathhapen = interaction.CheckInteraction(_plr.posX + 4, _plr.posY, Filename);
+                    whathhapen = interaction.CheckInteraction(_plr.posX + 2, _plr.posY, Filename);
                     if (whathhapen != "Not-Walkable")
                     {
                         return true;
@@ -77,31 +77,34 @@ namespace Gooflings
             return false;
         }
 
-        public void DoInteraction(string filename, Menu menu, string map, GameState gamestate) 
+        public string DoInteraction(string filename, Menu menu, string map, GameState gamestate) 
         {
 
             Filename = filename;
 
-            string whathhapen = interaction.CheckInteraction(_plr.posY, _plr.posY, Filename); 
+            string whathhapen = interaction.CheckInteraction(_plr.posX, _plr.posY, Filename); 
 
             switch (whathhapen)
             {
                 case "To-Desert":
+                    _plr.posX = 240;
+                    _plr.posY = 45;
                     map = "Desert";
                     DoesMove();
-                    break ;
+                    return map;
 
                 case "To-Forest":
+                    _plr.posX = 10;
+                    _plr.posY = 18;
                     map = "Forest";
                     DoesMove();
-                    break;
-                
+                    return map;
+
                 // Not include for now
-                 case "To-House" or "To-tippie":
+                case "To-House" or "To-tippie":
                     // switch buffer to shop
                     DoesMove();
-                    break;
-                
+                    return map;
 
                 case "Spawn_Goofling":
                     int i = Helpers.Rand.Next(0, 5);
@@ -110,16 +113,17 @@ namespace Gooflings
                         gamestate = GameState.Fighting;
                     }
                     DoesMove();
-                    break;
+                    return map;
 
                 case "Not-Walkable":
                     DoesMove();
-                    break;
+                    return map;
 
                 case "noting":
                     DoesMove();
-                    break;
+                    return map;
             }
+            return map;
         }
 
         private void GoUp()
