@@ -1,6 +1,7 @@
 ﻿using Gooflings.Models;
 using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 
 namespace Gooflings
 {
@@ -20,7 +21,7 @@ namespace Gooflings
         private Player _player;
         private MapManager _mapManager;
         private MovementPlayer _movement;
-
+        private Trainer _trainer;
         public GameState State;
         public string CurrentMap { get; private set; }
         private int _stateMenu;
@@ -33,19 +34,20 @@ namespace Gooflings
             _player = new Player();
             _mapManager = new MapManager();
             _movement = new MovementPlayer(_inputManager, _player);
-
-            State = GameState.Exploring;
+            TrainerData AntoineData = Resources.Instance.GetTrainerData(TrainerType.Antoine);
+            _trainer = new Trainer(AntoineData);
+            State = GameState.Fighting;
             CurrentMap = "Forest";
 
-            //GooflingData rayanData = _resources.GetGooflingData(GooflingType.Radany);
-            //rayanData.Level = 12;
-            //rayanData.Exp = 100;
-            //Goofling rayan = new(rayanData);
-            //_player.Party.Members.Add(rayan);
+            GooflingData rayanData = _resources.GetGooflingData(GooflingType.Radany);
+            rayanData.Level = 12;
+            rayanData.Exp = 100;
+            Goofling rayan = new(rayanData);
+            _player.Party.Members.Add(rayan);
 
             Serializer.Load(_player);
-            //_menu.DrawBattleMenu(_player.Party.Members,);
-            _menu.DrawTitleMenu();
+            _menu.DrawBattleMenu(_player.Party.Members, _trainer.Party.Members[0]);
+            
         }
 
         public void Update()

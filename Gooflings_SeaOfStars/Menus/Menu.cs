@@ -29,7 +29,6 @@ namespace Gooflings
         InputManager _input;
         private int _selectedIndex;
         private string[] _options;
-        private string _prompt;
 
         #region stings
 
@@ -67,11 +66,12 @@ namespace Gooflings
 
 
         string gooflingMenuG = $" __________________________  \n|                          |\n|{returnCenteredLine("Gooflings",26)}|\n|__________________________|\n";
-        string gooflingMenuB = $" __________________________  \n|                          |\n|{returnCenteredLine("Sac",26)}|\n|__________________________|\n";
-        string gooflingMenuS = $" __________________________  \n|                          |\n|{returnCenteredLine("Sauvegarde",26)}|\n|__________________________|\n";
-        string gooflingMenuQ = $" __________________________  \n|                          |\n|{returnCenteredLine("Quitter",26)}|\n|__________________________|\n";
+        string gooflingMenuB = $" __________________________  \n|                          |\n|{returnCenteredLine("Bag",26)}|\n|__________________________|\n";
+        string gooflingMenuS = $" __________________________  \n|                          |\n|{returnCenteredLine("Save",26)}|\n|__________________________|\n";
+        string gooflingMenuQ = $" __________________________  \n|                          |\n|{returnCenteredLine("Quit",26)}|\n|__________________________|\n";
 
         string missingno = $"⠀⠀⠀⠀⡆⠁⢿⡯⡟⡝⣿⠂\n⠀⠀⠀⠀⡟⠿⢷⣶⢙⣽⠖⡇\n⠀⠀⠀⠀⡷⣍⣭⣍⣍⣿⣟⡇\n⠀⠀⠀⠀⣗⣟⣿⣯⣟⣿⣛⠆\n⠀⠀⠀⠀⡷⣴⣵⣟⣑⣫⣥⡇\n⢰⠒⠒⢶⣷⢶⣽⣟⠷⣳⢬⠇\n⢸⣖⣒⣺⡷⢿⢦⡴⠹⣾⡛⡇\n⢸⣗⣒⣿⣾⣿⡹⣇⣿⣏⣚⡇\n⢸⣹⡻⣻⡻⣻⢓⣯⣶⣾⣯⠇\n⢸⣀⣀⣀⣁⢩⣴⢯⣯⣟⡝⡇\n⢸⣤⣴⣶⢎⢿⠉⣽⡿⣻⣮⡇\n⢸⠶⢖⡿⢛⣛⢭⡵⡞⠇⣷⡇";
+        string missingnorevert = $"⠀⠀⠀⠀⡆⠁⢿⡯⡟⡝⣿⠂\n⠀⠀⠀⠀⡟⠿⢷⣶⢙⣽⠖⡇\n⠀⠀⠀⠀⡷⣍⣭⣍⣍⣿⣟⡇\n⠀⠀⠀⠀⣗⣟⣿⣯⣟⣿⣛⠆\n⠀⠀⠀⠀⡷⣴⣵⣟⣑⣫⣥⡇\n⢰⠒⠒⢶⣷⢶⣽⣟⠷⣳⢬⠇\n⢸⣖⣒⣺⡷⢿⢦⡴⠹⣾⡛⡇\n⢸⣗⣒⣿⣾⣿⡹⣇⣿⣏⣚⡇\n⢸⣹⡻⣻⡻⣻⢓⣯⣶⣾⣯⠇\n⢸⣀⣀⣀⣁⢩⣴⢯⣯⣟⡝⡇\n⢸⣤⣴⣶⢎⢿⠉⣽⡿⣻⣮⡇\n⢸⠶⢖⡿⢛⣛⢭⡵⡞⠇⣷⡇";
         #endregion
 
         public Menu(InputManager input)
@@ -108,6 +108,10 @@ namespace Gooflings
                         if (menu == (int)MenusDisplay.MainMenu)
                         {
                             //DrawTeamMenu();
+                        }
+                        if (menu == (int)MenusDisplay.Battle)
+                        {
+                            //DrawMove();
                         }
                         break;
                     case 1:
@@ -154,6 +158,9 @@ namespace Gooflings
                     case (int)MenusDisplay.MainMenu:
                         DrawMainMenu(); 
                         break;
+                    case (int)MenusDisplay.Battle:
+                        //DrawBattleMenu(_player.Party.Members, );
+                        break;
                     default:
                         break;
                 }
@@ -188,8 +195,11 @@ namespace Gooflings
         private void CreditsPage()
         {
             Console.Clear ();
-            Helpers.SkipLines((Console.WindowHeight/2)-1);
-            Console.WriteLine(returnDividedLine("Papagnan quoicoubeh feur", Console.WindowWidth, 2));
+            Helpers.SkipLines((Console.WindowHeight/2)-4);
+            Console.WriteLine(returnDividedLine("CREDITS:", Console.WindowWidth, 2));
+            Console.WriteLine(returnDividedLine("Antoine VOLLET", Console.WindowWidth, 2));
+            Console.WriteLine(returnDividedLine("Gwendal REBOUL", Console.WindowWidth, 2));
+            Console.WriteLine(returnDividedLine("William BAILLEUL", Console.WindowWidth, 2));
             Console.ReadKey(true);
             Console.Clear();
             DrawTitleMenu();
@@ -197,8 +207,6 @@ namespace Gooflings
 
         public void DrawMainMenu()
         {
-            Console.Clear();
-
             string[] MainOptions = { gooflingMenuG, gooflingMenuB, gooflingMenuS, gooflingMenuQ };
             _options = MainOptions;
 
@@ -225,24 +233,29 @@ namespace Gooflings
             Console.WriteLine(goofling);
         }
         
-        public void DrawBattleMenu(List<Goofling> party,TrainerGoofling goofling) 
+        public void DrawBattleMenu(List<Goofling> party,Goofling goofling) 
         {
-            char prefix = '>';
-            Console.WriteLine("**********************               *********************");
-            //Console.WriteLine($"*{returnStringName(party[0],30)}*               *{returnStringName(goofling.GooflingType, 30)}*");
-            Console.WriteLine($"*{returnStringHp(party[0], 25)}*               *                   *");
-            Console.WriteLine($"*{returnStringMana(party[0], 25)}*               *                   *");
-            Console.WriteLine("**********************               *********************");
-            Console.WriteLine("                                                          ");
-            Console.WriteLine("    //Ally Sprite                       //Enemy Sprite    ");
-            Console.WriteLine("                                                          ");
-            Console.WriteLine("**********************************************************");
-            Console.WriteLine("*                                                        *");
-            Console.WriteLine($"*       {prefix}Attack                       {prefix}Gooflings           *");
-            Console.WriteLine("*                                                        *");
-            Console.WriteLine($"*         {prefix}Bag                           {prefix}Flee             *");
-            Console.WriteLine("*                                                        *");
-            Console.WriteLine("**********************************************************");
+            string[] battleOptions = { "Attack", "Gooflings", "Bag", "Flee" };
+            _options = battleOptions;
+            char prefix;
+
+            Console.WriteLine(new string('*',Console.WindowWidth));
+            for (int i = 0; i < _options.Length; i++)
+            {
+                string currentOption = _options[i];
+                if (i == _selectedIndex)
+                {
+                    prefix = '>';
+                    Console.WriteLine($"{prefix}{currentOption}");
+                }
+                else
+                {
+                    prefix = ' ';
+                    Console.WriteLine($"{prefix}{currentOption}");
+                }
+                Console.ResetColor();
+            }
+            Console.WriteLine(new string('*',Console.WindowWidth));
         }
         public void DrawTeamMenu(List<Goofling> party)
         {

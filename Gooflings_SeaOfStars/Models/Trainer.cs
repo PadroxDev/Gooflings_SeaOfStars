@@ -6,7 +6,8 @@ namespace Gooflings
     public enum TrainerType
     {
         Unknown,
-        Alice
+        Alice,
+        Antoine
     }
 
     public struct TrainerData
