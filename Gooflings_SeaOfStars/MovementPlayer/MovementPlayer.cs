@@ -14,6 +14,7 @@ namespace Gooflings
         Interaction interaction;
         InputManager _inputManager;
         Player _plr;
+        string Filename;
 
         public MovementPlayer(InputManager input, Player plr)
         {
@@ -38,9 +39,50 @@ namespace Gooflings
             }
         }
 
-        public void DoInteraction(Player player, string filename, Menu menu, string map, GameState gamestate) 
+        public bool IsWalkable(string Direction)
         {
-            string whathhapen = interaction.CheckInteraction(player.posX, player.posY, filename); 
+            string whathhapen;
+            switch (Direction)
+            {
+                case "UP":
+                    whathhapen = interaction.CheckInteraction(_plr.posX, _plr.posY - 1, Filename);
+                    if (whathhapen != "Not-Walkable")
+                    {
+                        
+                        return true;
+                    }
+                    return false;
+                case "DOWN":
+                    whathhapen = interaction.CheckInteraction(_plr.posX, _plr.posY + 4, Filename);
+                    if (whathhapen != "Not-Walkable")
+                    {
+                        return true;
+                    }
+                    return false;
+                case "LEFT":
+                    whathhapen = interaction.CheckInteraction(_plr.posX - 1, _plr.posY, Filename);
+                    if (whathhapen != "Not-Walkable")
+                    {
+                        return true;
+                    }
+                    return false;
+                case "RIGHT":
+                    whathhapen = interaction.CheckInteraction(_plr.posX + 4, _plr.posY, Filename);
+                    if (whathhapen != "Not-Walkable")
+                    {
+                        return true;
+                    }
+                    return false;
+            }
+            return false;
+        }
+
+        public void DoInteraction(string filename, Menu menu, string map, GameState gamestate) 
+        {
+
+            Filename = filename;
+
+            string whathhapen = interaction.CheckInteraction(_plr.posY, _plr.posY, Filename); 
 
             switch (whathhapen)
             {
@@ -71,6 +113,7 @@ namespace Gooflings
                     break;
 
                 case "Not-Walkable":
+                    DoesMove();
                     break;
 
                 case "noting":
@@ -81,38 +124,53 @@ namespace Gooflings
 
         private void GoUp()
         {
-            for (int i = 0; i < MOVE_STEP; i++)
+            if (IsWalkable("UP"))
             {
-                if (_plr.posY <= 0) return;
-                _plr.posY--;
+                for (int i = 0; i < MOVE_STEP; i++)
+                {
+                    if (_plr.posY <= 0) return;
+                    _plr.posY--;
+                }
             }
+            
         }
 
         private void GoDown()
         {
-            for (int i = 0; i < MOVE_STEP; i++)
+            if (IsWalkable("DOWN"))
             {
-                if (_plr.posY >= 150) return;
-                _plr.posY++;
+                for (int i = 0; i < MOVE_STEP; i++)
+                {
+                    if (_plr.posY >= 150) return;
+                    _plr.posY++;
+                }
             }
+            
         }
 
         private void GoLeft()
         {
-            for (int i = 0; i < MOVE_STEP; i++)
+            if (IsWalkable("LEFT"))
             {
-                if (_plr.posX <= 0) return;
-                _plr.posX--;
+                for (int i = 0; i < MOVE_STEP; i++)
+                {
+                    if (_plr.posX <= 0) return;
+                    _plr.posX--;
+                }
             }
+            
         }
 
         private void GoRight()
         {
-            for (int i = 0; i < MOVE_STEP; i++)
+            if (IsWalkable("RIGHT"))
             {
-                if (_plr.posX >= 250) return;
-                _plr.posX++;
-            }
+                for (int i = 0; i < MOVE_STEP; i++)
+                {
+                    if (_plr.posX >= 250) return;
+                    _plr.posX++;
+                }
+            } 
         }
     }
 }
