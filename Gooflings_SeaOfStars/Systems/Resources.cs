@@ -103,6 +103,44 @@ namespace Gooflings
                         Level = 14
                     }
                 }
+            },
+            new TrainerData()
+            {
+                TrainerType = TrainerType.Antoine,
+                Name = "Antoine",
+                Party = new TrainerGoofling[6]
+                {
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Grayan,
+                        Level = 12
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Radany,
+                        Level = 14
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Grayan,
+                        Level = 12
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Radany,
+                        Level = 14
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Grayan,
+                        Level = 12
+                    },
+                    new TrainerGoofling()
+                    {
+                        GooflingType = GooflingType.Radany,
+                        Level = 14
+                    }
+                }
             }
         };
         private Dictionary<TrainerType, TrainerData> _TrainersDataDict;
