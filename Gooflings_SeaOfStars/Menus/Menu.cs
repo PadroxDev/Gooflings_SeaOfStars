@@ -143,6 +143,7 @@ namespace Gooflings
                         }
                         if (menu == (int)MenusDisplay.MainMenu)
                         {
+                            displayDirty = true;
                             state = GameState.BagMenu;
                         }
                         if (menu == (int)MenusDisplay.Battle)

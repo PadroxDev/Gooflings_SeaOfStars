@@ -77,7 +77,7 @@ namespace Gooflings
             return false;
         }
 
-        public string DoInteraction(string filename, Menu menu, string map, GameState gamestate) 
+        public string DoInteraction(string filename, Menu menu, string map, ref GameState gamestate) 
         {
 
             Filename = filename;
