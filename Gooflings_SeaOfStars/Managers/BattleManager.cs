@@ -48,6 +48,14 @@ namespace Gooflings
             Contender = tnr;
         }
 
+        public BattleManager(Player plr, Goofling savage)
+        {
+            Player = plr;
+            Contender = null;
+
+            EnemyGoofling = savage;
+        }
+
         ~BattleManager()
         {}
 
@@ -73,7 +81,7 @@ namespace Gooflings
         public void HandleSpawnGooflings(Resources resources)
         {
             PlayerGoofling = Player.Party.Members[0];
-            EnemyGoofling = Contender.Party.Members[0];
+            if(Contender is not null) EnemyGoofling = Contender.Party.Members[0];
             HandleWaitForAction(resources.GetMove(MoveType.Croustifesses), resources.GetMove(MoveType.Croustifesses));
         }
 
@@ -203,12 +211,15 @@ namespace Gooflings
                             PlayerGoofling = Player.Party.Members[i];
                         }
                     }
-                    foreach (Goofling goofling in Contender.Party.Members)
+                    if(Contender is not null)
                     {
-                        if (goofling.HP != 0)
+                        foreach (Goofling goofling in Contender.Party.Members)
                         {
-                            EnemyTeamState = true;
-                            EnemyGoofling = Contender.Party.Members[j];
+                            if (goofling.HP != 0)
+                            {
+                                EnemyTeamState = true;
+                                EnemyGoofling = Contender.Party.Members[j];
+                            }
                         }
                     }
                     if (PlayerTeamState && EnemyTeamState)

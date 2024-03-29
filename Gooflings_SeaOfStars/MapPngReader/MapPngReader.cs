@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.IO;
-using System.Collections.Immutable;
 
 namespace Gooflings
 {
@@ -32,7 +30,6 @@ namespace Gooflings
             }
 
             ImgDirectoryReader(UsedColor);
-
         }  
         
         public void PngToTxt(string Pngfile, string txtPath)

@@ -92,7 +92,7 @@ namespace Gooflings
         {
             for (int i = 0; i < MOVE_STEP; i++)
             {
-                if (_plr.posY >= 150) return;
+                if (_plr.posY >= 150-3) return;
                 _plr.posY++;
             }
         }
@@ -110,7 +110,7 @@ namespace Gooflings
         {
             for (int i = 0; i < MOVE_STEP; i++)
             {
-                if (_plr.posX >= 250) return;
+                if (_plr.posX >= 250-3) return;
                 _plr.posX++;
             }
         }
