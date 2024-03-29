@@ -111,6 +111,7 @@ namespace Gooflings
             SpAtk = Helpers.CalculateStatByLevel(data.SpAtk, data.Level);
             SpDef = Helpers.CalculateStatByLevel(data.SpDef, data.Level);
             Speed = Helpers.CalculateStatByLevel(data.Speed, data.Level);
+            Moves = data.Moves;
         }
 
         public override string ToString()

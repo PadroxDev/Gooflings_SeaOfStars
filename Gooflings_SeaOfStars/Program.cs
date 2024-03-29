@@ -17,38 +17,8 @@ namespace Gooflings
             // Gameloop
             while (true)
             {
-
                 gameManager.Update();
                 Thread.Sleep(_mlBetweenFrames);
-
-                //for (int x = 0; x < nav.Columns; x++) {
-                //    for (int y = 0; y < nav.Rows; y++) {
-                //        int v = x * nav.Rows + y;
-                //        buffer[x, y] = nav.SelectedIndex == v ? 'S' : v;
-                //    }
-                //}
-
-                //for (int x = 0;  x < nav.Rows;  x++) {
-                //    for (int y = 0; y < nav.Columns; y++) {
-                //        Console.Write(buffer[y, x] == 83 ? "P ," : buffer[y, x] + " ,");
-                //    }
-                //    Console.WriteLine();
-                //}
-                //for (int i = 0; i < 10; i++) {
-                //    for (int j = 0; j < 10; j++) {
-                //        if (i == player.posY && j == player.posX) {
-                //            Console.Write("0");
-                //        } else {
-                //            Console.Write(".");
-                //        }
-                //    }
-                //    Console.WriteLine();
-                //}
-
-                //Thread.Sleep(250);
-                //Console.Clear();
-                //}
-
             }
             //BattleManager battle = new BattleManager(player, enemy);
             //battle.HandleSpawnGooflings(resources);

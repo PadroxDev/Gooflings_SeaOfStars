@@ -10,7 +10,9 @@ namespace Gooflings
         TitleMenu,
         Exploring,
         MainMenu,
-        Fighting
+        Fighting,
+        GooflingMenu,
+        BagMenu
     }
 
     public class GameManager
@@ -48,6 +50,9 @@ namespace Gooflings
             rayanData.Exp = 100;
             Goofling rayan = new(rayanData);
             _player.Party.Members.Add(rayan);
+            _player.Party.Members.Add(rayan);
+            _player.Party.Members.Add(rayan);
+            _player.Party.Members.Add(rayan);
 
             Serializer.Load(_player);
             //_menu.DrawBattleMenu(_player.Party.Members, _trainer.Party.Members[0]);
@@ -79,6 +84,12 @@ namespace Gooflings
                 case GameState.Fighting:
                     HandleFighting();
                     break;
+                case GameState.GooflingMenu:
+                    HandleGooflingMenu();
+                    break;
+                case GameState.BagMenu:
+                    HandleBagMenu();
+                    break;
             }
         }
 
@@ -87,11 +98,20 @@ namespace Gooflings
             _stateMenu = 0;
             _menu.Update(_stateMenu, _player, null, ref State);
         }
-
+        private void HandleGooflingMenu()
+        {
+            _stateMenu = 2;
+            _menu.Update(_stateMenu, _player, null, ref State);
+        }
+        private void HandleBagMenu()
+        {
+            _stateMenu = 4;
+            _menu.Update(_stateMenu, _player, null, ref State);
+        }
         private void HandleExploring()
         {
             _mapManager.Update(_player, CurrentMap);
-            _movement.DoInteraction("../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap, State);
+            _movement.DoInteraction("../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap,ref State);
             //_movement.DoesMove();
             _player.Draw();
             Renderer.Flush();
@@ -105,7 +125,7 @@ namespace Gooflings
 
         private void HandleFighting()
         {
-            /*
+            
             if (_battleManager is null) // Start an encounter
             {
                 GooflingData encounterData = Resources.Instance.GetRandomGooflingData();

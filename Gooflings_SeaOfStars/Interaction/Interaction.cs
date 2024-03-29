@@ -19,7 +19,6 @@ namespace Gooflings
         public string CheckInteraction(int posX, int posY, string filename)
         {
             Map = File.ReadAllLines(filename);
-            Console.WriteLine(Map[posY][posX]);
             switch (Map[posY][posX]) 
             {
 
