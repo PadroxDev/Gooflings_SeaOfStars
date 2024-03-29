@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gooflings.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -78,7 +79,7 @@ namespace Gooflings
             _input = input;
         }
 
-        public void Update()
+        public void Update(int menu)
         {
             bool displayDirty = false;
             if (_input.GetKeyDown(ConsoleKey.DownArrow))
@@ -89,7 +90,7 @@ namespace Gooflings
             if (_input.GetKeyDown(ConsoleKey.UpArrow))
             {
                 _selectedIndex--;
-                if (_selectedIndex <= 0)
+                if (_selectedIndex < 0)
                 {
                     _selectedIndex = _options.Count()-1;
                 }
@@ -97,51 +98,81 @@ namespace Gooflings
             }
             if (_input.GetKeyDown(ConsoleKey.Enter))
             {
-                _selectedIndex = 0;
+                switch (_selectedIndex)
+                {
+                    case 0:
+                        if (menu == (int)MenusDisplay.Title)
+                        {
+                            //play
+                        }
+                        if (menu == (int)MenusDisplay.MainMenu)
+                        {
+                            //DrawTeamMenu();
+                        }
+                        break;
+                    case 1:
+                        if (menu == (int)MenusDisplay.Title)
+                        {
+                            CreditsPage();
+
+                        }
+                        if (menu == (int)MenusDisplay.MainMenu)
+                        {
+                            DrawBagMenu();
+                        }
+                        break;
+                    case 2:
+                        if (menu == (int)MenusDisplay.Title)
+                        {
+                            Environment.Exit(0);
+                        }
+                        if (menu == (int)MenusDisplay.MainMenu)
+                        {
+                            //Serializer.Save(player);
+                        }
+                        break;
+                    case 3:
+                        if (menu == (int)MenusDisplay.MainMenu)
+                        {
+                            Environment.Exit(0);
+                        }
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        break;
+                }
             }
             if (displayDirty)
             {
                 Console.Clear();
-                DrawTitleMenu();
+                switch (menu)
+                {
+                    case (int)MenusDisplay.Title:
+                        DrawTitleMenu();
+                        break;
+                    case (int)MenusDisplay.MainMenu:
+                        DrawMainMenu(); 
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-
-
-        private void DrawSaveMenu()
-        {
-            throw new NotImplementedException();
-        }
     
-        //public void DrawTitleMenu() 
-        //{
-        //    string[] titleOptions = { start, load, credits, exit };
-        //    _options =  titleOptions;
-        //    _selectedIndex = 0;
-            
-        //    PlaceElement(title, 2);
-        //    for (int i = 0; i < _options.Length; i++)
-        //    {
-        //        string currentOption = _options[i];
-        //        if (i == _selectedIndex)
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.Blue;
-        //            Console.BackgroundColor = ConsoleColor.Green;
-        //            Console.Write(currentOption);
-        //        }
-        //        else
-        //        {
-        //            Console.Write(currentOption);
-        //        }
-        //        Console.ResetColor();
-        //    }
-        //} 
+        public void UpdateBattle(BattleManager battleManager)
+        {
+        }
+
         public void DrawTitleMenu() 
         {
             string[] titleOptions = { continueButton, credits, exit };
             _options =  titleOptions;
 
             Helpers.SkipLines(5);
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(title);
+            Console.ResetColor();
             Helpers.SkipLines(7);
             for (int i = 0; i < _options.Length; i++)
             {
@@ -153,19 +184,21 @@ namespace Gooflings
                 }
                 else
                 {
-                    Console.Write(currentOption);
+                    Console.Write(currentOption); 
                 }
                 Helpers.SkipLines(2);
                 Console.ResetColor();
             }
         }
 
-
-        public void DrawGooflingStatMenu(Goofling goofling)
+        private void CreditsPage()
         {
+            Console.Clear ();
+            Helpers.SkipLines((Console.WindowHeight/2)-1);
+            Console.WriteLine(returnDividedLine("Papagnan quoicoubeh feur", Console.WindowWidth, 2));
+            Console.ReadKey(true);
             Console.Clear();
-
-            Console.WriteLine(goofling);
+            DrawTitleMenu();
         }
 
         public void DrawMainMenu()
@@ -190,26 +223,35 @@ namespace Gooflings
                 Console.ResetColor();
             }
         }
+
+        public void DrawGooflingStatMenu(Goofling goofling)
+        {
+            Console.Clear();
+
+            Console.WriteLine(goofling);
+        }
         
-        public void DrawBattleMenu() 
-        { 
+        public void DrawBattleMenu(List<Goofling> party,TrainerGoofling goofling) 
+        {
+            char prefix = '>';
             Console.WriteLine("**********************               *********************");
-            Console.WriteLine("*                    *               *                   *");
+            //Console.WriteLine($"*{returnStringName(party[0],30)}*               *{returnStringName(goofling.GooflingType, 30)}*");
+            Console.WriteLine($"*{returnStringHp(party[0], 25)}*               *                   *");
+            Console.WriteLine($"*{returnStringMana(party[0], 25)}*               *                   *");
             Console.WriteLine("**********************               *********************");
             Console.WriteLine("                                                          ");
             Console.WriteLine("    //Ally Sprite                       //Enemy Sprite    ");
             Console.WriteLine("                                                          ");
             Console.WriteLine("**********************************************************");
             Console.WriteLine("*                                                        *");
-            Console.WriteLine("*       Attack                       Gooflings           *");
+            Console.WriteLine($"*       {prefix}Attack                       {prefix}Gooflings           *");
             Console.WriteLine("*                                                        *");
-            Console.WriteLine("*         Bag                           Flee             *");
+            Console.WriteLine($"*         {prefix}Bag                           {prefix}Flee             *");
             Console.WriteLine("*                                                        *");
             Console.WriteLine("**********************************************************");
         }
         public void DrawTeamMenu(List<Goofling> party)
         {
-            Console.Clear();
 
             Console.WriteLine("__________________________");
             Console.WriteLine("\\                         \\");
@@ -237,7 +279,6 @@ namespace Gooflings
 
         public void DrawBagMenu()
         {
-            Console.Clear();
 
             Console.WriteLine("                           __________________________________________");
             Console.WriteLine("                          |  __________________   _________________  |");

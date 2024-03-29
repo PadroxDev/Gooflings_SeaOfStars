@@ -45,7 +45,7 @@ namespace Gooflings
             switch (Direction)
             {
                 case "UP":
-                    whathhapen = interaction.CheckInteraction(_plr.posX, _plr.posY - 1, Filename);
+                    whathhapen = interaction.CheckInteraction(_plr.posX, _plr.posY - 4, Filename);
                     if (whathhapen != "Not-Walkable")
                     {
                         
@@ -60,7 +60,7 @@ namespace Gooflings
                     }
                     return false;
                 case "LEFT":
-                    whathhapen = interaction.CheckInteraction(_plr.posX - 1, _plr.posY, Filename);
+                    whathhapen = interaction.CheckInteraction(_plr.posX - 4, _plr.posY, Filename);
                     if (whathhapen != "Not-Walkable")
                     {
                         return true;
@@ -141,11 +141,10 @@ namespace Gooflings
             {
                 for (int i = 0; i < MOVE_STEP; i++)
                 {
-                    if (_plr.posY >= 150) return;
+                    if (_plr.posY >= 150 - 3) return;
                     _plr.posY++;
                 }
             }
-            
         }
 
         private void GoLeft()
@@ -167,10 +166,10 @@ namespace Gooflings
             {
                 for (int i = 0; i < MOVE_STEP; i++)
                 {
-                    if (_plr.posX >= 250) return;
+                    if (_plr.posX >= 250 - 3) return;
                     _plr.posX++;
                 }
-            } 
+            }
         }
     }
 }

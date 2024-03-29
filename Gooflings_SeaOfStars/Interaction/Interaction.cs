@@ -9,7 +9,7 @@ namespace Gooflings
 {
     public class Interaction
     {
-        string Map;
+        string[] Map;
 
         public Interaction() 
         {
@@ -18,8 +18,9 @@ namespace Gooflings
 
         public string CheckInteraction(int posX, int posY, string filename)
         {
-            Map = File.ReadAllText(filename);
-            switch (Map[posX + posY * 250]) 
+            Map = File.ReadAllLines(filename);
+            Console.WriteLine(Map[posY][posX]);
+            switch (Map[posY][posX]) 
             {
 
                 case '1':
