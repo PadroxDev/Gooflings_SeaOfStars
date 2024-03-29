@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Gooflings.Goofling" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCIAACAgAAAFQEAAAQEAQJQIECEEAhAAAAogAAAAA=</HashCode>
+      <FileName>Models\Goofling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Trainer" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Trainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Menu" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACUAAAAAQQIBgaAAAwAAAAhCAABAMAgZgAIEAKAACAA=</HashCode>
+      <FileName>Menus\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.NavMenu" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAgAAABQAEAAgAAIAAAAAgAAAAAAAIAAAAgAAAQ=</HashCode>
+      <FileName>Menus\NavMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.MovementPlayer" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAEAAAAAQAIAAAgAAAAAAkAAAgAAAEAAAAoAEAA=</HashCode>
+      <FileName>MovementPlayer\MovementPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Renderer" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAQAAAQAAAAAACAAQAAAAAAAAAABIAAA=</HashCode>
+      <FileName>Systems\Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Resources" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAJAKAAAAAAAAAABAAAAAAAAAAAAUABAAAIAEgA=</HashCode>
+      <FileName>Systems\Resources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.BattleManager" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAUACAAAAAAAAAAAAAAAAAAAIAAAAAgDICUABQAACAA=</HashCode>
+      <FileName>Managers\BattleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.GameManager" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAwQAAABAAAACCQIAAgAAAAAAAAEAJCAACAI=</HashCode>
+      <FileName>Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.InputManager" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAwAAAAAAABAAAQAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.MapManager" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Managers\MapManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Party" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Player\Party.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Player" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAgAAAAAAAAQAAACAAAAAAAAAwAAAAAA=</HashCode>
+      <FileName>Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.MapTxtReader" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAABAAAAgAAAAAAEAAAAAAAAAAAAAEAEAAAAAA=</HashCode>
+      <FileName>MapTxtReader\MapTxtReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Interaction" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\Interaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Helpers" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBACAAAAAEAAAABAIAAAAAAIBAAACBJAQAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Helpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Maths" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Maths.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.MapPngReader" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAABQCAAEAAAAAAAAAAA=</HashCode>
+      <FileName>MapPngReader\MapPngReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Program" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAACA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Moves.Move" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAIAAQAAAAAABEBAAAAAhAAACA=</HashCode>
+      <FileName>Models\Move.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Moves.Croustifesses" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Moves\Croustifesses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gooflings.Models.Serializer" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\Serializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Gooflings.GooflingData" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAIAQAAQBQIEAEEABAAAAIgAAIAA=</HashCode>
+      <FileName>Models\Goofling.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Gooflings.TrainerData" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Trainer.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Gooflings.BufferSlot" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAAAACAA=</HashCode>
+      <FileName>Systems\Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Gooflings.TrainerGoofling" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Helpers.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Gooflings.Models.GameData" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Serializer.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="Gooflings.GooflingType" Collapsed="true">
+    <Position X="11.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAAAAAABA=</HashCode>
+      <FileName>Models\Goofling.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.TrainerType" Collapsed="true">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAABABA=</HashCode>
+      <FileName>Models\Trainer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.BattleState" Collapsed="true">
+    <Position X="6" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAEAAAAAAAIAAAAACAAAAAAAAAAAAAAACEAAAAA=</HashCode>
+      <FileName>Managers\BattleManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.GameState" Collapsed="true">
+    <Position X="9.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAQAAAEAQAAAAAAAAAAAACACAAAA=</HashCode>
+      <FileName>Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.KeyState" Collapsed="true">
+    <Position X="13" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAEAAI=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.ExpRequirement" Collapsed="true">
+    <Position X="7.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAABAAAIIAAAAAIAAAAAAAAABAA=</HashCode>
+      <FileName>Helpers\Helpers.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.Types" Collapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAEAAAAAgAAAAAAAAAAAAAAAAAgEAAAA=</HashCode>
+      <FileName>Helpers\Helpers.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.Moves.MoveType" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\Move.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gooflings.Moves.MoveCategory" Collapsed="true">
+    <Position X="6" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Move.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
