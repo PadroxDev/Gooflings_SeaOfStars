@@ -9,17 +9,18 @@ namespace Gooflings
 {
     public class Interaction
     {
+        string[] Map;
 
         public Interaction() 
         {
-        
+            
         }
 
         public string CheckInteraction(int posX, int posY, string filename)
         {
-            string Map = File.ReadAllText(filename);
-
-            switch(Map[posX + posY]) 
+            Map = File.ReadAllLines(filename);
+            Console.WriteLine(Map[posY][posX]);
+            switch (Map[posY][posX]) 
             {
 
                 case '1':

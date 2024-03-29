@@ -91,8 +91,8 @@ namespace Gooflings
         private void HandleExploring()
         {
             _mapManager.Update(_player, CurrentMap);
-            //_movement.DoInteraction(_player, "../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap, ref State);
-            _movement.DoesMove();
+            _movement.DoInteraction("../../../InteractionTxt/" + CurrentMap + "-Interaction.txt", _menu, CurrentMap, State);
+            //_movement.DoesMove();
             _player.Draw();
             Renderer.Flush();
         }
@@ -105,6 +105,7 @@ namespace Gooflings
 
         private void HandleFighting()
         {
+            /*
             if (_battleManager is null) // Start an encounter
             {
                 GooflingData encounterData = Resources.Instance.GetRandomGooflingData();
