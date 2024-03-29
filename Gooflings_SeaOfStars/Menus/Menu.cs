@@ -160,13 +160,19 @@ namespace Gooflings
             }
         }
     
+        public void UpdateBattle(BattleManager battleManager)
+        {
+        }
+
         public void DrawTitleMenu() 
         {
             string[] titleOptions = { continueButton, credits, exit };
             _options =  titleOptions;
 
             Helpers.SkipLines(5);
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(title);
+            Console.ResetColor();
             Helpers.SkipLines(7);
             for (int i = 0; i < _options.Length; i++)
             {

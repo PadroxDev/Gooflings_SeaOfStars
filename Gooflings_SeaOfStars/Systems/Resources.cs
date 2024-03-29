@@ -126,6 +126,7 @@ namespace Gooflings
         }
 
         public GooflingData GetGooflingData(GooflingType type) => _GooflingsDataDict[type];
+        public GooflingData GetRandomGooflingData() => GooflingsData[Helpers.Rand.Next(GooflingsData.Count)];
         public Move GetMove(MoveType type) => _MovesDataDict[type];
         public TrainerData GetTrainerData(TrainerType type) => _TrainersDataDict[type];
     }
