@@ -70,8 +70,8 @@ namespace Gooflings
         string gooflingMenuS = $" __________________________  \n|                          |\n|{returnCenteredLine("Save",26)}|\n|__________________________|\n";
         string gooflingMenuQ = $" __________________________  \n|                          |\n|{returnCenteredLine("Quit",26)}|\n|__________________________|\n";
 
-        string missingno = $"⠀⠀⠀⠀⡆⠁⢿⡯⡟⡝⣿⠂\n⠀⠀⠀⠀⡟⠿⢷⣶⢙⣽⠖⡇\n⠀⠀⠀⠀⡷⣍⣭⣍⣍⣿⣟⡇\n⠀⠀⠀⠀⣗⣟⣿⣯⣟⣿⣛⠆\n⠀⠀⠀⠀⡷⣴⣵⣟⣑⣫⣥⡇\n⢰⠒⠒⢶⣷⢶⣽⣟⠷⣳⢬⠇\n⢸⣖⣒⣺⡷⢿⢦⡴⠹⣾⡛⡇\n⢸⣗⣒⣿⣾⣿⡹⣇⣿⣏⣚⡇\n⢸⣹⡻⣻⡻⣻⢓⣯⣶⣾⣯⠇\n⢸⣀⣀⣀⣁⢩⣴⢯⣯⣟⡝⡇\n⢸⣤⣴⣶⢎⢿⠉⣽⡿⣻⣮⡇\n⢸⠶⢖⡿⢛⣛⢭⡵⡞⠇⣷⡇";
-        string missingnorevert = $"⠀⠀⠀⠀⡆⠁⢿⡯⡟⡝⣿⠂\n⠀⠀⠀⠀⡟⠿⢷⣶⢙⣽⠖⡇\n⠀⠀⠀⠀⡷⣍⣭⣍⣍⣿⣟⡇\n⠀⠀⠀⠀⣗⣟⣿⣯⣟⣿⣛⠆\n⠀⠀⠀⠀⡷⣴⣵⣟⣑⣫⣥⡇\n⢰⠒⠒⢶⣷⢶⣽⣟⠷⣳⢬⠇\n⢸⣖⣒⣺⡷⢿⢦⡴⠹⣾⡛⡇\n⢸⣗⣒⣿⣾⣿⡹⣇⣿⣏⣚⡇\n⢸⣹⡻⣻⡻⣻⢓⣯⣶⣾⣯⠇\n⢸⣀⣀⣀⣁⢩⣴⢯⣯⣟⡝⡇\n⢸⣤⣴⣶⢎⢿⠉⣽⡿⣻⣮⡇\n⢸⠶⢖⡿⢛⣛⢭⡵⡞⠇⣷⡇";
+        string missingno = "⠀⠀⠀⠀⡆⠁⢿⡯⡟⡝⣿⠂\n⠀⠀⠀⠀⡟⠿⢷⣶⢙⣽⠖⡇\n⠀⠀⠀⠀⡷⣍⣭⣍⣍⣿⣟⡇\n⠀⠀⠀⠀⣗⣟⣿⣯⣟⣿⣛⠆\n⠀⠀⠀⠀⡷⣴⣵⣟⣑⣫⣥⡇\n⢰⠒⠒⢶⣷⢶⣽⣟⠷⣳⢬⠇\n⢸⣖⣒⣺⡷⢿⢦⡴⠹⣾⡛⡇\n⢸⣗⣒⣿⣾⣿⡹⣇⣿⣏⣚⡇\n⢸⣹⡻⣻⡻⣻⢓⣯⣶⣾⣯⠇\n⢸⣀⣀⣀⣁⢩⣴⢯⣯⣟⡝⡇\n⢸⣤⣴⣶⢎⢿⠉⣽⡿⣻⣮⡇\n⢸⠶⢖⡿⢛⣛⢭⡵⡞⠇⣷⡇";
+        string missingnorevert = "⠂⣿⡝⡟⡯⢿⠁⡆⠀⠀\n⡇⠖⣽⢙⣶⢷⠿⡟\n⡇⣟⣿⣍⣍⣭⣍⡷\n⠆⣛⣿⣟⣯⣿⣟⣗\n⡇⣥⣫⣑⣟⣵⣴⡷\n⠇⢬⣳⠷⣟⣽⢶⣷⢶⠒⠒⢰\n⡇⣮⣻⡿⣽⠉⢿⢎⣶⣴⣤⢸\n⡇⡝⣟⣯⢯⣴⢩⣁⣀⣀⣀⢸\n⠇⣯⣾⣶⣯⢓⣻⡻⣻⡻⣹⢸\n⡇⣚⣏⣿⣇⡹⣿⣾⣿⣒⣗⢸\n⡇⡛⣾⠹⡴⢦⢿⡷⣺⣒⣖⢸\n⠇⢬⣳⠷⣟⣽⢶⣷⢶⠒⠒⢰";
         #endregion
 
         public Menu(InputManager input)
@@ -79,7 +79,7 @@ namespace Gooflings
             _input = input;
         }
 
-        public void Update(int menu)
+        public void Update(int menu, Player player, BattleManager battleManager, ref GameState state) 
         {
             bool displayDirty = false;
             if (_input.GetKeyDown(ConsoleKey.DownArrow))
@@ -98,16 +98,17 @@ namespace Gooflings
             }
             if (_input.GetKeyDown(ConsoleKey.Enter))
             {
+                Console.Beep();
                 switch (_selectedIndex)
                 {
                     case 0:
                         if (menu == (int)MenusDisplay.Title)
                         {
-                            //play
+                            state = GameState.Exploring;
                         }
                         if (menu == (int)MenusDisplay.MainMenu)
                         {
-                            //DrawTeamMenu();
+                            DrawTeamMenu(player.Party.Members);
                         }
                         if (menu == (int)MenusDisplay.Battle)
                         {
@@ -124,6 +125,10 @@ namespace Gooflings
                         {
                             DrawBagMenu();
                         }
+                        if (menu == (int)MenusDisplay.Battle)
+                        {
+                            DrawTeamMenu(player.Party.Members);
+                        }
                         break;
                     case 2:
                         if (menu == (int)MenusDisplay.Title)
@@ -132,13 +137,21 @@ namespace Gooflings
                         }
                         if (menu == (int)MenusDisplay.MainMenu)
                         {
-                            //Serializer.Save(player);
+                            Serializer.Save(player);
+                        }
+                        if (menu == (int)MenusDisplay.Battle)
+                        {
+
                         }
                         break;
                     case 3:
                         if (menu == (int)MenusDisplay.MainMenu)
                         {
                             Environment.Exit(0);
+                        }
+                        if (menu == (int)MenusDisplay.Battle)
+                        {
+                            state = GameState.Exploring;
                         }
                         break;
                     case 4:
@@ -159,7 +172,9 @@ namespace Gooflings
                         DrawMainMenu(); 
                         break;
                     case (int)MenusDisplay.Battle:
-                        //DrawBattleMenu(_player.Party.Members, );
+                        Goofling enemyGoofling = battleManager.EnemyGoofling;
+                        List<Goofling> allyGooflings = battleManager.Player.Party.Members;
+                        DrawBattleMenu(allyGooflings, enemyGoofling);
                         break;
                     default:
                         break;
@@ -167,9 +182,6 @@ namespace Gooflings
             }
         }
     
-        public void UpdateBattle(BattleManager battleManager)
-        {
-        }
 
         public void DrawTitleMenu() 
         {
@@ -268,7 +280,7 @@ namespace Gooflings
 
             Console.WriteLine("__________________________");
             Console.WriteLine("\\                         \\");
-            Console.WriteLine($" \\{returnStringName(party[0],25)}\\       __________________________");
+            Console.WriteLine($" \\" + (party[0] != null ? returnStringName(party[0], 25) : new string(' ', 25)) +  "\\       __________________________");
             Console.WriteLine($"  \\{returnStringHp(party[0], 25)}\\      \\                         \\");
             Console.WriteLine($"   \\{returnStringMana(party[0], 25)}\\      \\{returnStringName(party[1], 25)}\\");
             Console.WriteLine($"    \\_________________________\\      \\{returnStringHp(party[1], 25)}\\");
@@ -370,6 +382,5 @@ namespace Gooflings
             }
             return str;
         }
-
     }
 }

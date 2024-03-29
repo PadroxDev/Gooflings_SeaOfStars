@@ -38,7 +38,7 @@ namespace Gooflings
             _movement = new MovementPlayer(_inputManager, _player);
             TrainerData AntoineData = Resources.Instance.GetTrainerData(TrainerType.Antoine);
             _trainer = new Trainer(AntoineData);
-            State = GameState.Fighting;
+            State = GameState.TitleMenu;
             _battleManager = null;
 
             CurrentMap = "Forest";
@@ -50,7 +50,8 @@ namespace Gooflings
             _player.Party.Members.Add(rayan);
 
             Serializer.Load(_player);
-            _menu.DrawBattleMenu(_player.Party.Members, _trainer.Party.Members[0]);
+            //_menu.DrawBattleMenu(_player.Party.Members, _trainer.Party.Members[0]);
+            _menu.DrawTitleMenu();
             
         }
 
@@ -58,11 +59,7 @@ namespace Gooflings
         {
             _inputManager.Update();
 
-            if(_inputManager.GetKeyDown(ConsoleKey.M))
-            {
-                Serializer.Save(_player);
-            }
-
+            
             switch (State)
             {
                 case GameState.TitleMenu:
@@ -70,6 +67,11 @@ namespace Gooflings
                     break;
                 case GameState.Exploring:
                     HandleExploring();
+                    if (State == GameState.Exploring && _inputManager.GetKeyDown(ConsoleKey.Spacebar))
+                    {
+                        HandleMainMenu();
+                        State = GameState.MainMenu;
+                    }
                     break;
                 case GameState.MainMenu:
                     HandleMainMenu();
@@ -83,7 +85,7 @@ namespace Gooflings
         private void HandleTitleMenu()
         {
             _stateMenu = 0;
-            _menu.Update(_stateMenu);
+            _menu.Update(_stateMenu, _player, null, ref State);
         }
 
         private void HandleExploring()
@@ -98,7 +100,7 @@ namespace Gooflings
         private void HandleMainMenu()
         {
             _stateMenu = 1;
-            _menu.Update(_stateMenu);
+            _menu.Update(_stateMenu, _player , null, ref State);
         }
 
         private void HandleFighting()
@@ -111,8 +113,7 @@ namespace Gooflings
                 _battleManager = new(_player, encounter);
             }
             _stateMenu = 6;
-            _menu.UpdateBattle(_battleManager);
-
+            _menu.Update(_stateMenu, _player, _battleManager, ref State);
         }
     }
 }
