@@ -20,13 +20,6 @@ namespace Gooflings
                 gameManager.Update();
                 Thread.Sleep(_mlBetweenFrames);
             }
-            //BattleManager battle = new BattleManager(player, enemy);
-            //battle.HandleSpawnGooflings(resources);
-
-            //Console.WriteLine(dany);
-            
-            //Move move = resources.GetMove(MoveType.Croustifesses);
-            //move.OnAction(grayan, dany);*/
         }
     }
 }
